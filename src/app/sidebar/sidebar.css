@@ -1,0 +1,20 @@
+nav ul {
+  list-style-type: none;
+  margin-block: 0;
+  padding-left: 0;
+
+  & li a {
+    color: #b3b9c6;
+    text-decoration: none;
+    border-radius: 8px;
+    display: flex;
+    padding: 6px 16px;
+    gap: var(--mat-header-spacing);
+    position: relative;
+    white-space: nowrap;
+
+    &.active {
+      color: #ffffff;
+    }
+  }
+}

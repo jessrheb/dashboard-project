@@ -1,0 +1,28 @@
+header {
+  display: flex;
+  justify-content: space-between;
+
+  & a {
+    background-color: var(--mat-sidenav-container-background-color);
+    color: #ffffff;
+    display: flex;
+    gap: calc(2 * var(--mat-header-spacing));
+    height: 64px;
+    letter-spacing: 0.1px;
+    place-content: center;
+    place-items: center;
+    text-decoration: none;
+    width: var(--mat-sidenav-container-width);
+
+    & mat-icon {
+      height: 32px;
+      width: 32px;
+    }
+
+    & h6 {
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+  }
+}
