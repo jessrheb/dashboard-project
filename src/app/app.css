@@ -1,19 +1,18 @@
 .dashboard-container {
   height: 100vh;
 }
-
 mat-drawer {
-  width: var(--mat-sidenav-container-width);
   border-radius: 0px;
+  width: var(--mat-sidenav-container-width);
 }
-
 mat-divider {
+  border: none;
+  height: 1px;
+
   background-image: linear-gradient(
     to right,
     #434a60 var(--mat-sidenav-container-width),
     #dcdfe4 var(--mat-sidenav-container-width),
     #dcdfe4 100%
   );
-  border: none;
-  height: 1px;
 }
