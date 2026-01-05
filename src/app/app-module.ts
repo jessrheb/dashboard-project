@@ -6,30 +6,26 @@ import { MaterialModule } from '../material-module';
 
 import { App } from './app';
 import { AppRoutingModule } from './app-routing-module';
-import { Account } from './content/account/account';
-import { Content } from './content/content';
-import { Customers } from './content/customers/customers';
-import { Integrations } from './content/integrations/integrations';
-import { Overview } from './content/overview/overview';
-import { Settings } from './content/settings/settings';
-import { Header } from './header/header';
-import { Menu } from './menu/menu';
-import { Sidebar } from './sidebar/sidebar';
+import { Header } from './components/header/header';
+import { Menu } from './components/menu/menu';
+import { Sidebar } from './components/sidebar/sidebar';
+import { Account } from './pages/account/account';
+import { Customers } from './pages/customers/customers';
+import { Integrations } from './pages/integrations/integrations';
+import { Overview } from './pages/overview/overview';
+import { Settings } from './pages/settings/settings';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [
-    App,
-    Menu,
-    Header,
-    Content,
-    Sidebar,
-    Overview,
-    Customers,
-    Integrations,
-    Settings,
-    Account,
+  declarations: [App, Menu, Header, Sidebar, Overview, Customers, Integrations, Settings, Account],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    NgxPhosphorIconsModule,
+    MatIconModule,
+    MatMenuModule,
   ],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule, NgxPhosphorIconsModule, MatIconModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
 })

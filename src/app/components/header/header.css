@@ -1,6 +1,8 @@
 header {
+  align-items: center;
   display: flex;
   justify-content: space-between;
+  padding-right: calc(2 * var(--mat-header-spacing));
 
   & a {
     background-color: var(--mat-sidenav-container-background-color);
@@ -8,12 +10,13 @@ header {
     display: flex;
     gap: calc(2 * var(--mat-header-spacing));
     height: 64px;
+    letter-spacing: 0.2px;
     place-content: center;
     place-items: center;
     text-decoration: none;
     width: var(--mat-sidenav-container-width);
 
-    & mat-icon {
+    & mat-icon.header-icon {
       height: 32px;
       width: 32px;
     }
@@ -22,5 +25,8 @@ header {
       font-weight: 500;
       line-height: 1.2;
     }
+  }
+  & app-menu {
+    height: 40px;
   }
 }

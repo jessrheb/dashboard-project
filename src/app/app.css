@@ -1,11 +1,11 @@
 .dashboard-container {
-  height: 100vh;
+  height: 100%;
 }
 mat-drawer {
   border-radius: 0px;
   width: var(--mat-sidenav-container-width);
 }
-mat-divider {
+mat-divider.cross-component {
   border: none;
   height: 1px;
 
