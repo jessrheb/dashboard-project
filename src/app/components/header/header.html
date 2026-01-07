@@ -1,7 +1,7 @@
 <header>
-    <a href="">
-        <mat-icon class="header-icon" svgIcon="ph-regular:speedometer"></mat-icon>
-        <h6>Dashboard Project</h6>
-    </a>
+    <button matIconButton *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
     <app-menu></app-menu>
 </header>

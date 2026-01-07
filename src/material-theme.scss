@@ -48,23 +48,23 @@ body {
   color: #212636;
   color-scheme: light;
   font: var(--mat-sys-body-medium);
-  font-weight: 400;
   font-size: 1rem;
-  line-height: 1.5;
+  font-weight: 400;
   height: 100%;
+  line-height: 1.5;
   margin: 0;
 }
 
 main {
-  width: 100%;
+  box-sizing: border-box;
   height: fit-content;
   margin-left: auto;
-  box-sizing: border-box;
   margin-right: auto;
+  padding-bottom: 64px;
   padding-left: calc(3 * var(--mat-header-spacing));
   padding-right: calc(3 * var(--mat-header-spacing));
   padding-top: 64px;
-  padding-bottom: 64px;
+  width: 100%;
 }
 
 p {
