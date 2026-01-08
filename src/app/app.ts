@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AfterContentChecked, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -8,17 +8,13 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App implements AfterContentChecked {
-  @ViewChild(MatSidenav, { static: true })
+export class App implements AfterViewInit {
+  @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
   constructor(private readonly observer: BreakpointObserver) {}
 
-  onClickHandler() {
-    console.log(this.sidenav);
-  }
-
-  ngAfterContentChecked() {
+  ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
       if (res.matches) {
         this.sidenav.mode = 'over';

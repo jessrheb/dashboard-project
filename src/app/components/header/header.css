@@ -1,8 +1,14 @@
+@media (max-width: 1250px) {
+  header {
+    justify-content: space-between !important;
+  }
+}
+
 header {
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  padding-right: calc(2 * var(--mat-header-spacing));
+  padding: 0 calc(2 * var(--mat-header-spacing));
   min-height: 64px;
 
   & app-menu {
