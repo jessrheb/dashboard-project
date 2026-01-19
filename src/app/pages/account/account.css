@@ -1,0 +1,43 @@
+mat-card.account {
+  width: 400px;
+
+  & mat-card-header.account {
+    padding: 32px 0 calc(var(--mat-header-spacing) * 2) 0;
+
+    & img[mat-card-avatar][mat-card-sm-image] {
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  & mat-card-content.account {
+    display: flex;
+    flex-direction: column;
+    gap: var(--mat-header-spacing);
+    text-align: center;
+    padding-bottom: 32px;
+
+    & h5 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    & p {
+      color: #667085;
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.57;
+    }
+  }
+
+  & mat-divider.account {
+    border-color: #dcdfe4;
+  }
+
+  & mat-card-actions > button.account[matButton] {
+    width: 100%;
+  }
+}

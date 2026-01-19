@@ -41,6 +41,19 @@ html {
       item-with-icon-trailing-spacing: 16px,
     )
   );
+
+  @include mat.card-overrides(
+    (
+      outlined-outline-color: #dcdfe4,
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      text-label-text-color: #635bff,
+      text-container-shape: 12px,
+    )
+  );
 }
 
 body {
