@@ -1,12 +1,8 @@
-.dashboard-container {
+mat-sidenav-container.dashboard-container {
   height: 100%;
-}
-mat-sidenav {
-  border-radius: 0px;
-  width: var(--mat-sidenav-container-width);
-}
-mat-divider.header {
-  background-color: #dcdfe4;
-  border: none;
-  height: 1px;
+
+  & mat-sidenav {
+    border-radius: 0px;
+    width: var(--mat-sidenav-container-width);
+  }
 }

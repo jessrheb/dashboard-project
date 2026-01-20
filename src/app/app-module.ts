@@ -1,8 +1,9 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterOutlet } from '@angular/router';
 import { NgxPhosphorIconsModule } from 'ngx-phosphor-icons';
 import { MaterialModule } from '../material-module';
-import { RouterOutlet } from '@angular/router';
 
 import { App } from './app';
 import { AppRoutingModule } from './app-routing-module';
@@ -17,7 +18,14 @@ import { Settings } from './pages/settings/settings';
 
 @NgModule({
   declarations: [App, Menu, Header, Sidebar, Overview, Customers, Integrations, Settings, Account],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule, NgxPhosphorIconsModule, RouterOutlet],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    FormsModule,
+    MaterialModule,
+    NgxPhosphorIconsModule,
+    RouterOutlet,
+  ],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
 })
