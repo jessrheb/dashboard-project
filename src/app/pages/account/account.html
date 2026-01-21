@@ -1,30 +1,30 @@
 <h4 class="page-heading">Account</h4>
 <div class="wrapper">
     <mat-card appearance="outlined" class="account info">
-        <mat-card-header class="account">
+        <mat-card-header class="info">
             <img mat-card-avatar mat-card-sm-image
                 src="https://dashboard-djonathas-projects.vercel.app/assets/avatar.png"
                 alt="Avatar depicting Sofia Rivers">
         </mat-card-header>
-        <mat-card-content class="account">
+        <mat-card-content class="info">
             <h5>Sofia Rivers</h5>
             <p>Los Angeles USA</p>
             <p>GTM-7</p>
         </mat-card-content>
-        <mat-divider class="account"></mat-divider>
+        <mat-divider></mat-divider>
         <mat-card-actions>
             <button matButton class="account">Upload picture</button>
         </mat-card-actions>
     </mat-card>
     <mat-card appearance="outlined" class="account form">
-        <mat-card-header>
+        <mat-card-header class="form">
             <mat-card-title-group>
                 <mat-card-title>Profile</mat-card-title>
                 <mat-card-subtitle>The information can be edited</mat-card-subtitle>
             </mat-card-title-group>
         </mat-card-header>
-        <mat-divider class="account"></mat-divider>
-        <mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-content class="form">
             <form>
                 <mat-form-field appearance="outline">
                     <mat-label>First name</mat-label>
@@ -46,11 +46,11 @@
                     <input matInput>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" floatLabel="always">
                     <mat-label>State</mat-label>
                     <mat-select>
                         <mat-option value="alabama">Alabama</mat-option>
-                        <mat-option value="new-tork">New York</mat-option>
+                        <mat-option value="new-york">New York</mat-option>
                         <mat-option value="san-francisco">San Francisco</mat-option>
                         <mat-option value="los-angeles">Los Angeles</mat-option>
                     </mat-select>
@@ -62,8 +62,8 @@
                 </mat-form-field>
             </form>
         </mat-card-content>
-        <mat-divider class="account"></mat-divider>
-        <mat-card-actions>
+        <mat-divider></mat-divider>
+        <mat-card-actions class="form">
             <button matButton="filled">Save details</button>
         </mat-card-actions>
     </mat-card>

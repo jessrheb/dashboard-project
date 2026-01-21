@@ -6,7 +6,9 @@
   min-width: 0;
 
   mat-card.account {
-    & mat-card-header.account {
+    height: fit-content;
+
+    & mat-card-header.info {
       padding: 32px 0 calc(var(--mat-header-spacing) * 2) 0;
 
       & img[mat-card-avatar][mat-card-sm-image] {
@@ -15,7 +17,10 @@
         margin: 0 auto;
       }
     }
-    & mat-card-content.account {
+    & mat-card-header.form {
+      padding: 32px 24px 16px;
+    }
+    & mat-card-content.info {
       display: flex;
       flex-direction: column;
       gap: var(--mat-header-spacing);
@@ -35,22 +40,37 @@
         line-height: 1.57;
       }
     }
-    & mat-divider.account {
-      border-color: #dcdfe4;
-    }
-    & mat-card-actions > button.account[matButton] {
-      width: 100%;
-    }
+    & mat-card-content.form {
+      padding: 32px 24px;
 
+      & > form {
+        display: grid;
+        gap: 0 calc(var(--mat-header-spacing) * 3);
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(3, calc(50% - calc(var(--mat-header-spacing) * 3)));
+
+        & > mat-form-field {
+          height: fit-content;
+        }
+      }
+    }
+    & mat-card-actions {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+
+      & > button.account[matButton] {
+        width: 100%;
+      }
+    }
     &.info {
-      flex-grow: 0;
       flex-basis: auto;
+      flex-grow: 0;
       width: calc(100% * 4 / 12 - (12 - 4) * (calc(var(--mat-header-spacing) * 3)) / 12);
     }
-
     &.form {
-      flex-grow: 0;
       flex-basis: auto;
+      flex-grow: 0;
       width: calc(100% * 8 / 12 - (12 - 8) * (calc(var(--mat-header-spacing) * 3)) / 12);
     }
   }

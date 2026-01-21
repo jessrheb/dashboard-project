@@ -47,11 +47,27 @@ html {
       outlined-container-elevation: 0 5px 22px 0 rgba(0, 0, 0, 0.04),
       outlined-container-shape: 20px,
       outlined-outline-color: #dcdfe4,
+      subtitle-text-color: #667085,
+      subtitle-text-line-height: 1.57,
+      subtitle-text-size: 0.875rem,
+      subtitle-text-weight: 400,
+      title-text-line-height: 1.2,
+      title-text-size: 1.125rem,
+      title-text-weight: 500,
+    )
+  );
+
+  @include mat.form-field-overrides(
+    (
+      outlined-container-shape: 8px,
+      outlined-outline-color: #b3b9c6,
     )
   );
 
   @include mat.button-overrides(
     (
+      filled-container-color: #635bff,
+      filled-container-shape: 12px,
       text-label-text-color: #635bff,
       text-container-shape: 12px,
     )
@@ -92,4 +108,8 @@ h4.page-heading {
   font-weight: 500;
   line-height: 1.2;
   margin: 0 0 calc(3 * var(--mat-header-spacing)) 0;
+}
+
+mat-divider {
+  border-color: #dcdfe4 !important;
 }
