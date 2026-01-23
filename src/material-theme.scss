@@ -46,7 +46,7 @@ html {
     (
       outlined-container-elevation: 0 5px 22px 0 rgba(0, 0, 0, 0.04),
       outlined-container-shape: 20px,
-      outlined-outline-color: #dcdfe4,
+      outlined-outline-color: #ebebeb,
       subtitle-text-color: #667085,
       subtitle-text-line-height: 1.57,
       subtitle-text-size: 0.875rem,
@@ -59,8 +59,17 @@ html {
 
   @include mat.form-field-overrides(
     (
+      container-text-tracking: 0,
       outlined-container-shape: 8px,
+      outlined-hover-label-text-color: #667085,
+      outlined-label-text-color: #667085,
       outlined-outline-color: #b3b9c6,
+    )
+  );
+
+  @include mat.select-overrides(
+    (
+      panel-background-color: white,
     )
   );
 
@@ -75,10 +84,11 @@ html {
 }
 
 body {
-  background-color: var(--mat-sys-surface);
+  background-color: white;
   color: #212636;
   color-scheme: light;
   font: var(--mat-sys-body-medium);
+  font-optical-sizing: none;
   font-size: 1rem;
   font-weight: 400;
   height: 100%;
