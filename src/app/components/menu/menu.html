@@ -1,9 +1,9 @@
-<img src="https://dashboard-djonathas-projects.vercel.app/assets/avatar.png" alt="Avatar depicting Sofia Rivers"
-    [matMenuTriggerFor]="menu" class="menu-avatar" (click)="onClickingAvatar()">
+<img [src]="loggedAccount.imgSrc" [alt]="loggedAccount.imgAlt" [matMenuTriggerFor]="menu" class="menu-avatar"
+    (click)="onClickingAvatar()">
 <mat-menu class="user-menu" #menu="matMenu">
     <hgroup>
-        <h6 class="user-name">Sofia Rivers</h6>
-        <p class="user-email">sofia.rivers@dev.io</p>
+        <h6 class="user-name">{{ loggedAccount.firstName }} {{ loggedAccount.lastName }}</h6>
+        <p class="user-email">{{ loggedAccount.email }}</p>
     </hgroup>
     <mat-divider></mat-divider>
     <button routerLink="/settings" class="menu-button" mat-menu-item>

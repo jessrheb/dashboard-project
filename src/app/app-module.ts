@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { Header } from './components/header/header';
 import { Menu } from './components/menu/menu';
 import { Sidebar } from './components/sidebar/sidebar';
-import { Data } from './data';
+import { Data } from './shared/data';
 import { Account } from './pages/account/account';
 import { Customers } from './pages/customers/customers';
 import { Integrations } from './pages/integrations/integrations';
