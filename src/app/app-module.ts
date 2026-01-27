@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { Header } from './components/header/header';
 import { Menu } from './components/menu/menu';
 import { Sidebar } from './components/sidebar/sidebar';
+import { Data } from './data';
 import { Account } from './pages/account/account';
 import { Customers } from './pages/customers/customers';
 import { Integrations } from './pages/integrations/integrations';
@@ -26,7 +27,7 @@ import { Settings } from './pages/settings/settings';
     NgxPhosphorIconsModule,
     RouterOutlet,
   ],
-  providers: [provideBrowserGlobalErrorListeners()],
+  providers: [provideBrowserGlobalErrorListeners(), Data],
   bootstrap: [App],
 })
 export class AppModule {}

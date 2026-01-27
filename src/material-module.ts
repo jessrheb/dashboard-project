@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,6 +17,7 @@ import { MatToolbar } from '@angular/material/toolbar';
   imports: [
     MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatDivider,
     MatFormFieldModule,
     MatInputModule,
@@ -31,6 +33,7 @@ import { MatToolbar } from '@angular/material/toolbar';
   exports: [
     MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatDivider,
     MatFormFieldModule,
     MatInputModule,

@@ -70,6 +70,20 @@ html {
   @include mat.select-overrides(
     (
       panel-background-color: white,
+      trigger-text-tracking: 0,
+    )
+  );
+
+  @include mat.checkbox-overrides(
+    (
+      label-text-color: #212636,
+      label-text-line-height: 1.5,
+      label-text-size: 16px,
+      label-text-tracking: 0,
+      selected-focus-icon-color: #635bff,
+      selected-hover-icon-color: #635bff,
+      selected-icon-color: #635bff,
+      selected-pressed-icon-color: #635bff,
     )
   );
 
