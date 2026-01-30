@@ -5,4 +5,10 @@ mat-sidenav-container.dashboard-container {
     border-radius: 0px;
     width: var(--mat-sidenav-container-width);
   }
+
+  & mat-divider.header {
+    position: sticky;
+    top: 64px;
+    z-index: 2;
+  }
 }

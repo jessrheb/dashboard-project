@@ -1,8 +1,22 @@
+@media (max-width: 1200px) {
+  .wrapper {
+    flex-wrap: wrap !important;
+
+    & mat-card.account.info {
+      width: 100% !important;
+    }
+
+    & mat-card.account.form {
+      width: 100% !important;
+    }
+  }
+}
+
 .wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: calc(var(--mat-header-spacing) * 3) calc(var(--mat-header-spacing) * 3);
+  gap: calc(var(--mat-header-spacing) * 3) calc((var(--mat-header-spacing) * 3) - 2px);
   min-width: 0;
 
   mat-card.account {
@@ -55,10 +69,6 @@
       }
     }
     & mat-card-actions {
-      align-items: flex-end;
-      display: flex;
-      flex-direction: column;
-
       & > button.info[matButton] {
         width: 100%;
       }
@@ -71,12 +81,12 @@
     &.info {
       flex-basis: auto;
       flex-grow: 0;
-      width: calc(100% * 4 / 12 - (12 - 4) * (calc(var(--mat-header-spacing) * 3)) / 12);
+      width: 332px;
     }
     &.form {
       flex-basis: auto;
       flex-grow: 0;
-      width: calc(100% * 8 / 12 - (12 - 8) * (calc(var(--mat-header-spacing) * 3)) / 12);
+      width: calc(100% - 332px - calc((var(--mat-header-spacing) * 3) - 2px));
     }
   }
 }

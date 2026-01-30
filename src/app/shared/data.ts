@@ -1,11 +1,11 @@
-export class AccountType {
-  firstName!: string;
-  lastName!: string;
-  imgSrc!: string;
-  imgAlt!: string;
-  location!: string;
-  timezone!: string;
-  email!: string;
+export interface AccountType {
+  firstName: string;
+  lastName: string;
+  imgSrc: string;
+  imgAlt: string;
+  location: string;
+  timezone: string;
+  email: string;
 }
 
 export class Data {

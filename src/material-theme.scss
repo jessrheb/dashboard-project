@@ -7,6 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
+  --box-shadow: 0 5px 22px 0 rgba(0, 0, 0, 0.04);
   --mat-header-spacing: 8px;
   --mat-sidenav-container-background-color: #121621;
   --mat-sidenav-container-text-color: #b3b9c6;
@@ -27,6 +28,13 @@ html {
     )
   );
 
+  @include mat.sidenav-overrides(
+    (
+      container-background-color: white,
+      content-background-color: white,
+    )
+  );
+
   @include mat.menu-overrides(
     (
       container-color: #ffffff,
@@ -44,12 +52,14 @@ html {
 
   @include mat.card-overrides(
     (
-      outlined-container-elevation: 0 5px 22px 0 rgba(0, 0, 0, 0.04),
+      outlined-container-color: white,
+      outlined-container-elevation: var(--box-shadow),
       outlined-container-shape: 20px,
       outlined-outline-color: #ebebeb,
       subtitle-text-color: #667085,
       subtitle-text-line-height: 1.57,
       subtitle-text-size: 0.875rem,
+      subtitle-text-tracking: 0,
       subtitle-text-weight: 400,
       title-text-line-height: 1.2,
       title-text-size: 1.125rem,
@@ -61,9 +71,11 @@ html {
     (
       container-text-tracking: 0,
       outlined-container-shape: 8px,
+      outlined-input-text-placeholder-color: #667085,
       outlined-hover-label-text-color: #667085,
       outlined-label-text-color: #667085,
       outlined-outline-color: #b3b9c6,
+      subscript-text-tracking: 0,
     )
   );
 
@@ -84,6 +96,7 @@ html {
       selected-hover-icon-color: #635bff,
       selected-icon-color: #635bff,
       selected-pressed-icon-color: #635bff,
+      state-layer-size: 42px,
     )
   );
 
@@ -91,6 +104,7 @@ html {
     (
       filled-container-color: #635bff,
       filled-container-shape: 12px,
+      filled-horizontal-padding: 20px,
       text-label-text-color: #635bff,
       text-container-shape: 12px,
     )
@@ -106,6 +120,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   height: 100%;
+  letter-spacing: 0;
   line-height: 1.5;
   margin: 0;
 }
@@ -115,10 +130,7 @@ main {
   height: fit-content;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 64px;
-  padding-left: calc(3 * var(--mat-header-spacing));
-  padding-right: calc(3 * var(--mat-header-spacing));
-  padding-top: 64px;
+  padding: 63px calc(3 * var(--mat-header-spacing)) 64px calc((3 * var(--mat-header-spacing)) - 1px);
   width: 100%;
 }
 
@@ -131,9 +143,16 @@ h4.page-heading {
   font-size: 32px;
   font-weight: 500;
   line-height: 1.2;
-  margin: 0 0 calc(3 * var(--mat-header-spacing)) 0;
+  margin: 0 0 calc((3 * var(--mat-header-spacing)) - 1px) 0;
+  padding: 1px 0 0 1px;
 }
 
 mat-divider {
   border-color: #dcdfe4 !important;
+}
+
+mat-card-actions:has(> button[matButton='filled']) {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
 }
