@@ -1,3 +1,14 @@
+export interface NotificationSettings {
+  email: {
+    productUpdates: boolean;
+    securityUpdates: boolean;
+  };
+  phone: {
+    email: boolean;
+    securityUpdates: boolean;
+  };
+}
+
 export interface AccountType {
   firstName: string;
   lastName: string;
@@ -6,6 +17,7 @@ export interface AccountType {
   location: string;
   timezone: string;
   email: string;
+  notificationSettings: NotificationSettings;
 }
 
 export class Data {
@@ -17,6 +29,16 @@ export class Data {
     location: 'Los Angeles USA',
     timezone: 'GMT-7',
     email: 'sofia@devias.io',
+    notificationSettings: {
+      email: {
+        productUpdates: true,
+        securityUpdates: false,
+      },
+      phone: {
+        email: true,
+        securityUpdates: false,
+      },
+    },
   };
 
   states = ['Alabama', 'New York', 'San Francisco', 'Los Angeles'];

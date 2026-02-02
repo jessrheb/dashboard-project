@@ -17,6 +17,10 @@ export class Account implements OnInit {
 
   states: Array<string> = [];
 
+  get loggedAccount() {
+    return this.accounts[0];
+  }
+
   constructor(private readonly data: Data) {}
 
   ngOnInit(): void {
