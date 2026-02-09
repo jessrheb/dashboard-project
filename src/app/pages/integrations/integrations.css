@@ -1,0 +1,52 @@
+div.integrations-cards {
+  display: grid;
+  gap: calc(var(--mat-header-spacing) * 3) calc((var(--mat-header-spacing) * 3) - 2px);
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+
+  & > mat-card[appearance='outlined'].integrations.integration-card {
+    & > mat-card-header {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--mat-header-spacing) * 2);
+      margin-bottom: var(--mat-header-spacing);
+      padding: 32px 24px 0px 24px;
+      place-items: center;
+
+      & > img[mat-card-avatar] {
+        margin: 0;
+      }
+    }
+    & > mat-card-content {
+      padding: 0 24px 32px 24px;
+      text-align: center;
+      height: 100%;
+    }
+    & > mat-card-footer {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      gap: calc(var(--mat-header-spacing) * 2);
+      justify-content: space-between;
+      padding: calc(var(--mat-header-spacing) * 2);
+
+      & > .info {
+        display: flex;
+        gap: 4px;
+
+        & > p {
+          color: #667085;
+          font-weight: 400;
+          font-size: 0.875rem;
+          line-height: 1.57;
+          margin: 0;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+mat-paginator {
+  margin: 0 auto;
+}

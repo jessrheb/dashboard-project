@@ -1,0 +1,4 @@
+mat-card.search-box mat-form-field {
+  max-width: 500px;
+  width: 100%;
+}

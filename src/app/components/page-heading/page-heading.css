@@ -1,0 +1,20 @@
+section.complex-heading {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > button[matButton='filled'] > mat-icon {
+    font-size: 24px;
+    font-weight: 500;
+    height: 24px;
+    width: 24px;
+  }
+}
+section.complex-buttons {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: var(--mat-header-spacing);
+  height: 42.5px;
+}

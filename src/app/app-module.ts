@@ -16,9 +16,12 @@ import { Customers } from './pages/customers/customers';
 import { Integrations } from './pages/integrations/integrations';
 import { Overview } from './pages/overview/overview';
 import { Settings } from './pages/settings/settings';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { SearchBox } from './components/search-box/search-box';
+import { PageHeading } from './components/page-heading/page-heading';
 
 @NgModule({
-  declarations: [App, Menu, Header, Sidebar, Overview, Customers, Integrations, Settings, Account],
+  declarations: [App, Menu, Header, Sidebar, Overview, Customers, Integrations, Settings, Account, SearchBox, PageHeading],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -27,7 +30,11 @@ import { Settings } from './pages/settings/settings';
     NgxPhosphorIconsModule,
     RouterOutlet,
   ],
-  providers: [provideBrowserGlobalErrorListeners(), Data],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    Data,
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: 'dynamic' } },
+  ],
   bootstrap: [App],
 })
 export class AppModule {}

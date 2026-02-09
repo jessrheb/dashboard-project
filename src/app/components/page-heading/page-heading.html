@@ -1,0 +1,18 @@
+<section class="complex-heading">
+    <h4 class="h4">{{ pageTitle}}</h4>
+    <button matButton="filled" *ngIf="!simpleHeading">
+        <mat-icon>add</mat-icon>
+        <span>Add</span>
+    </button>
+</section>
+
+<section *ngIf="!simpleHeading" class="complex-buttons">
+    <button matButton>
+        <mat-icon svgIcon="ph-light:upload" style="height: 20px; width: 20px"></mat-icon>
+        <span>Import</span>
+    </button>
+    <button matButton>
+        <mat-icon svgIcon="ph-light:download" style="height: 20px; width: 20px"></mat-icon>
+        <span>Export</span>
+    </button>
+</section>

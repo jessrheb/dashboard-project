@@ -1,50 +1,44 @@
-.wrapper {
+mat-card-header.settings {
+  padding: 32px 24px 16px;
+}
+mat-card-content.settings {
   display: flex;
-  flex-direction: column;
-  gap: calc(3 * var(--mat-header-spacing));
+  gap: calc(6 * var(--mat-header-spacing));
+  padding: 32px 24px;
 
-  mat-card-header.settings {
-    padding: 32px 24px 16px;
-  }
-  mat-card-content.settings {
+  &.checkboxes {
     display: flex;
-    gap: calc(6 * var(--mat-header-spacing));
-    padding: 32px 24px;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-    &.checkboxes {
+    & section.checkboxes {
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+      flex-direction: column;
 
-      & section.checkboxes {
-        display: flex;
-        flex-direction: column;
-
-        &:first-child {
-          width: 298px;
-        }
-        & > mat-checkbox {
-          margin-left: -11px;
-          white-space: nowrap;
-        }
+      &:first-child {
+        width: 298px;
+      }
+      & > mat-checkbox {
+        margin-left: -11px;
+        white-space: nowrap;
       }
     }
-    & form.password {
-      display: inline-flex;
-      flex-direction: column;
-      gap: calc((3 * var(--mat-header-spacing)) - 19.5px);
-      max-width: 600px;
-      width: 100%;
-    }
-    & h5 {
-      font-size: 1.125rem;
-      font-weight: 500;
-      line-height: 1.2;
-      margin: 0 0 var(--mat-header-spacing) 0;
-    }
+  }
+  & form.password {
+    display: inline-flex;
+    flex-direction: column;
+    gap: calc(3 * var(--mat-header-spacing));
+    max-width: 600px;
+    width: 100%;
+  }
+  & h5 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 var(--mat-header-spacing) 0;
+  }
 
-    &.password {
-      padding: 32px 24px calc(32px - 19.5px) 24px;
-    }
+  &.password {
+    padding: 32px 24px calc(32px - 19.5px) 24px;
   }
 }

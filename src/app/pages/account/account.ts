@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FloatLabelType } from '@angular/material/form-field';
+import { FloatLabelType, SubscriptSizing } from '@angular/material/form-field';
+
 import { AccountType, Data } from '../../shared/data';
 
 @Component({
@@ -12,6 +13,7 @@ import { AccountType, Data } from '../../shared/data';
 })
 export class Account implements OnInit {
   floatLabel = new FormControl('auto' as FloatLabelType);
+  subscriptSizing!: SubscriptSizing;
 
   accounts: Array<AccountType> = [];
 

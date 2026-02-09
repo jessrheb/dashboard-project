@@ -1,8 +1,3 @@
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
@@ -70,12 +65,14 @@ html {
   @include mat.form-field-overrides(
     (
       container-text-tracking: 0,
+      leading-icon-color: rgba(0, 0, 0, 0.54),
       outlined-container-shape: 8px,
+      outlined-focus-label-text-color: #635bff,
+      outlined-focus-outline-color: #635bff,
       outlined-input-text-placeholder-color: #667085,
       outlined-hover-label-text-color: #667085,
       outlined-label-text-color: #667085,
       outlined-outline-color: #b3b9c6,
-      subscript-text-tracking: 0,
     )
   );
 
@@ -100,13 +97,32 @@ html {
     )
   );
 
+  @include mat.icon-button-overrides(
+    (
+      icon-size: 18px,
+      state-layer-size: 26px,
+      touch-target-size: 26px,
+    )
+  );
+
   @include mat.button-overrides(
     (
       filled-container-color: #635bff,
       filled-container-shape: 12px,
       filled-horizontal-padding: 20px,
-      text-label-text-color: #635bff,
       text-container-shape: 12px,
+      text-label-text-color: #635bff,
+      text-hover-state-layer-opacity: 0.04,
+      text-pressed-state-layer-opacity: 0.04,
+      text-state-layer-color: rgb(33, 38, 54),
+    )
+  );
+
+  @include mat.paginator-overrides(
+    (
+      container-background-color: transparent,
+      container-text-line-height: 1.57,
+      container-text-size: 0.875rem,
     )
   );
 }
@@ -138,13 +154,69 @@ p {
   margin: 0;
 }
 
-h4.page-heading {
-  color: #212636;
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin: 0 0 calc((3 * var(--mat-header-spacing)) - 1px) 0;
-  padding: 1px 0 0 1px;
+@media (max-width: 1200px) {
+  app-account {
+    flex-wrap: wrap !important;
+
+    & mat-card.account.info {
+      width: 100% !important;
+    }
+
+    & mat-card.account.form {
+      width: 100% !important;
+    }
+  }
+}
+
+app-account,
+app-customers,
+app-integrations,
+app-overview,
+app-settings {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: calc(var(--mat-header-spacing) * 3 - 2px) calc((var(--mat-header-spacing) * 3) - 2px);
+  min-width: 0;
+}
+
+app-page-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mat-header-spacing);
+  min-width: 0;
+  width: 100%;
+
+  & > h4.h4,
+  & > section.complex-heading > h4.h4 {
+    color: #212636;
+    display: block;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+    padding: 1px 0 0 1px;
+  }
+}
+
+app-search-box,
+mat-card[appearance='outlined']:not(.account) {
+  width: 100%;
+}
+
+mat-sidenav-container.dashboard-container {
+  height: 100%;
+
+  & mat-sidenav {
+    border-radius: 0px;
+    width: var(--mat-sidenav-container-width);
+  }
+
+  & mat-divider.header {
+    position: sticky;
+    top: 64px;
+    z-index: 2;
+  }
 }
 
 mat-divider {
@@ -155,4 +227,28 @@ mat-card-actions:has(> button[matButton='filled']) {
   align-items: flex-end;
   display: flex;
   flex-direction: column;
+}
+
+mat-card.search-box mat-form-field {
+  @include mat.form-field-overrides(
+    (
+      outlined-input-text-placeholder-color: rgb(33, 38, 54, 0.42),
+    )
+  );
+}
+
+section.complex-buttons > button[matButton] {
+  @include mat.button-overrides(
+    (
+      text-label-text-color: #212636,
+    )
+  );
+}
+
+div.integrations-cards > mat-card[appearance='outlined'].integrations.integration-card {
+  @include mat.card-overrides(
+    (
+      title-text-size: 1.5rem,
+    )
+  );
 }
