@@ -127,6 +127,13 @@ html {
   );
 }
 
+@include mat.table-overrides(
+  (
+    background-color: white,
+    row-item-outline-color: #ebebeb,
+  )
+);
+
 body {
   background-color: white;
   color: #212636;

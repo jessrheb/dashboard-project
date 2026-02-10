@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbar } from '@angular/material/toolbar';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MatToolbar } from '@angular/material/toolbar';
     MatPaginatorModule,
     MatSelectModule,
     MatSidenavModule,
+    MatTableModule,
     MatToolbar,
     ReactiveFormsModule,
   ],
@@ -46,6 +48,7 @@ import { MatToolbar } from '@angular/material/toolbar';
     MatPaginatorModule,
     MatSelectModule,
     MatSidenavModule,
+    MatTableModule,
     MatToolbar,
     ReactiveFormsModule,
   ],

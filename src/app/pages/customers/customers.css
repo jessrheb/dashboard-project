@@ -1,0 +1,13 @@
+td[mat-cell] {
+  padding: 16px;
+
+  & > div.complex-cell {
+    display: flex;
+    gap: calc(2 * var(--mat-header-spacing));
+    align-items: center;
+
+    & > img[mat-card-avatar] {
+      margin-bottom: 0;
+    }
+  }
+}

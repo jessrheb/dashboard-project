@@ -28,6 +28,16 @@ export interface Applications {
   installs: number;
 }
 
+export interface CustomersInfo {
+  id: number;
+  name: string;
+  avatar: string;
+  email: string;
+  location: string;
+  phone: string;
+  signedUp: Date;
+}
+
 export class Data {
   sampleAccount: AccountType = {
     firstName: 'Sofia',
@@ -98,6 +108,54 @@ export class Data {
         'Squarespace provides software as a service for website building and hosting. Headquartered in NYC.',
       lastUpdated: new Date(new Date().setDate(new Date().getDate() - 4)),
       installs: 435,
+    },
+  ];
+
+  customersInfo: Array<CustomersInfo> = [
+    {
+      id: 1,
+      name: 'Alcides Antonio',
+      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-10.png',
+      email: 'alcides.antonio@devias.io',
+      location: 'Madrid, Comunidad de Madrid, Spain',
+      phone: '908-691-3242',
+      signedUp: new Date(),
+    },
+    {
+      id: 2,
+      name: 'Marcus Finn',
+      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-9.png',
+      email: 'marcus.finn@devias.io',
+      location: 'Carson City, Nevada, USA',
+      phone: '415-907-2647',
+      signedUp: new Date(),
+    },
+    {
+      id: 3,
+      name: 'Jie Yan',
+      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-8.png',
+      email: 'jie.yan.song@devias.io',
+      location: 'North Canton, Ohio, USA',
+      phone: '770-635-2682',
+      signedUp: new Date(),
+    },
+    {
+      id: 4,
+      name: 'Nasimiyu Danai',
+      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-7.png',
+      email: 'nasimiyu.danai@devias.io',
+      location: 'Salt Lake City, Utah, USA',
+      phone: '801-301-7894',
+      signedUp: new Date(),
+    },
+    {
+      id: 5,
+      name: 'Iulia Albu',
+      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-6.png',
+      email: 'iulia.albu@devias.io',
+      location: 'Murray, Utah, USA',
+      phone: '313-812-8947',
+      signedUp: new Date(),
     },
   ];
 }
