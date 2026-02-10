@@ -3,7 +3,7 @@
 <app-search-box [placeholder]="'Search integration'"></app-search-box>
 
 <div class="integrations-cards">
-    <mat-card appearance="outlined" class="integrations integration-card" *ngFor="let app of integrationApp">
+    <mat-card appearance="outlined" class="integrations integration-card" *ngFor="let app of integrationApps">
         <mat-card-header>
             <img mat-card-avatar [src]="app.logo" alt="">
             <mat-card-title>{{ app.name }}</mat-card-title>

@@ -11,10 +11,6 @@ import { Applications, Data } from '../../shared/data';
 export class Integrations implements OnInit {
   integrationApps: Array<Applications> = [];
 
-  get integrationApp(): Array<Applications> {
-    return this.integrationApps;
-  }
-
   constructor(private readonly data: Data) {}
 
   ngOnInit(): void {
