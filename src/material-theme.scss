@@ -123,6 +123,7 @@ html {
       container-background-color: transparent,
       container-text-line-height: 1.57,
       container-text-size: 0.875rem,
+      container-text-tracking: 0,
     )
   );
 }
@@ -130,6 +131,12 @@ html {
 @include mat.table-overrides(
   (
     background-color: white,
+    header-container-height: 100%,
+    header-headline-color: #667085,
+    header-headline-line-height: 1,
+    header-headline-tracking: 0,
+    row-item-label-text-line-height: 1,
+    row-item-label-text-tracking: 0,
     row-item-outline-color: #ebebeb,
   )
 );
@@ -258,4 +265,24 @@ div.integrations-cards > mat-card[appearance='outlined'].integrations.integratio
       title-text-size: 1.5rem,
     )
   );
+}
+
+app-customers {
+  & table[mat-table] {
+    @include mat.checkbox-overrides(
+      (
+        unselected-focus-icon-color: #667085,
+        unselected-hover-icon-color: #667085,
+        unselected-icon-color: #667085,
+      )
+    );
+  }
+
+  & mat-paginator {
+    @include mat.icon-button-overrides(
+      (
+        icon-size: 24px,
+      )
+    );
+  }
 }
