@@ -108,8 +108,11 @@ html {
   @include mat.button-overrides(
     (
       filled-container-color: #635bff,
+      filled-container-height: 42.5px,
       filled-container-shape: 12px,
       filled-horizontal-padding: 20px,
+      filled-label-text-tracking: 0,
+      text-container-height: 42.5px,
       text-container-shape: 12px,
       text-label-text-color: #635bff,
       text-hover-state-layer-opacity: 0.04,
@@ -141,6 +144,13 @@ html {
   )
 );
 
+@include mat.progress-bar-overrides(
+  (
+    active-indicator-color: #635bff,
+    track-color: rgb(195, 192, 255),
+  )
+);
+
 body {
   background-color: white;
   color: #212636;
@@ -160,7 +170,7 @@ main {
   height: fit-content;
   margin-left: auto;
   margin-right: auto;
-  padding: 63px calc(3 * var(--mat-header-spacing)) 64px calc((3 * var(--mat-header-spacing)) - 1px);
+  padding: 62px calc(3 * var(--mat-header-spacing)) 64px calc((3 * var(--mat-header-spacing)) - 1px);
   width: 100%;
 }
 
@@ -237,7 +247,8 @@ mat-divider {
   border-color: #dcdfe4 !important;
 }
 
-mat-card-actions:has(> button[matButton='filled']) {
+mat-card-actions:has(> button[matButton='filled']),
+mat-card-actions:has(> button[matButton].overview-actions) {
   align-items: flex-end;
   display: flex;
   flex-direction: column;
@@ -251,10 +262,21 @@ mat-card.search-box mat-form-field {
   );
 }
 
-section.complex-buttons > button[matButton] {
+section.complex-buttons > button[matButton],
+button[matButton].overview-actions {
   @include mat.button-overrides(
     (
       text-label-text-color: #212636,
+    )
+  );
+}
+
+button[matButton].overview-actions {
+  @include mat.button-overrides(
+    (
+      text-container-height: 36.75px,
+      text-with-icon-horizontal-padding: 12px,
+      text-label-text-size: 0.8125rem,
     )
   );
 }
@@ -285,4 +307,16 @@ app-customers {
       )
     );
   }
+}
+
+mat-card[appearance='outlined'] > mat-card-header {
+  padding: 32px 24px 16px;
+
+  & > mat-card-title-group {
+    align-items: center;
+  }
+}
+
+mat-card[appearance='outlined'] > mat-card-content {
+  padding: 32px 24px;
 }

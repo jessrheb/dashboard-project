@@ -5,10 +5,8 @@ section.complex-heading {
   justify-content: space-between;
 
   & > button[matButton='filled'] > mat-icon {
-    font-size: 24px;
-    font-weight: 500;
-    height: 24px;
-    width: 24px;
+    height: 20px;
+    width: 20px;
   }
 }
 section.complex-buttons {
@@ -16,5 +14,5 @@ section.complex-buttons {
   display: flex;
   flex-direction: row;
   gap: var(--mat-header-spacing);
-  height: 42.5px;
+  padding: 1px 0 0 1px;
 }

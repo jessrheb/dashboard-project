@@ -24,9 +24,6 @@ mat-card.account {
       margin: 0 auto;
     }
   }
-  & mat-card-header.form {
-    padding: 32px 24px 16px;
-  }
   & mat-card-content.info {
     display: flex;
     flex-direction: column;

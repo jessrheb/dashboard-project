@@ -1,3 +1,141 @@
-<main>
-    <p>Overview Page</p>
-</main>
+<mat-grid-list cols="12" rowHeight="fit" gutterSize="24px">
+    <mat-grid-tile colspan="3" rowspan="1">
+        <mat-card appearance="outlined" class="overview-card">
+            <mat-card-content>
+                <div class="overview-icon" style="background-color: #635bff;">
+                    <mat-icon svgIcon="ph-light:currency-dollar"></mat-icon>
+                </div>
+                <div class="title-group">
+                    <mat-card-title>$24k</mat-card-title>
+                    <mat-card-subtitle>Budget</mat-card-subtitle>
+                </div>
+            </mat-card-content>
+            <mat-card-footer>
+                <div class="stats positive">
+                    <mat-icon svgIcon="ph-light:arrow-up"></mat-icon>
+                    <p>12%</p>
+                </div>
+                <span>Since last month</span>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3" rowspan="1">
+        <mat-card appearance="outlined" class="overview-card">
+            <mat-card-content>
+                <div class="overview-icon" style="background-color: #15b79f;">
+                    <mat-icon svgIcon="ph-light:users"></mat-icon>
+                </div>
+                <div class="title-group">
+                    <mat-card-title>1.6k</mat-card-title>
+                    <mat-card-subtitle>Total<br>Customers</mat-card-subtitle>
+                </div>
+            </mat-card-content>
+            <mat-card-footer>
+                <div class="stats negative">
+                    <mat-icon svgIcon="ph-light:arrow-down"></mat-icon>
+                    <p>16%</p>
+                </div>
+                <span>Since last month</span>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3" rowspan="1">
+        <mat-card appearance="outlined" class="overview-card">
+            <mat-card-content>
+                <div class="overview-icon" style="background-color: #fb9c0c;">
+                    <mat-icon svgIcon="ph-light:list-bullets"></mat-icon>
+                </div>
+                <div class="title-group">
+                    <mat-card-title>75.5%</mat-card-title>
+                    <mat-card-subtitle>Task Progress</mat-card-subtitle>
+                </div>
+            </mat-card-content>
+            <mat-card-footer>
+                <mat-progress-bar mode="determinate" value="76"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3" rowspan="1">
+        <mat-card appearance="outlined" class="overview-card">
+            <mat-card-content>
+                <div class="overview-icon" style="background-color: #635bff;">
+                    <mat-icon svgIcon="ph-light:receipt"></mat-icon>
+                </div>
+                <div class="title-group">
+                    <mat-card-title>$15k</mat-card-title>
+                    <mat-card-subtitle>Total Profit</mat-card-subtitle>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="8" rowspan="2">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Sales</mat-card-title>
+                    <button matButton type="button" class="overview-actions">
+                        <mat-icon svgIcon="ph-light:arrow-clockwise"></mat-icon>
+                        <span>Sync</span>
+                    </button>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                <app-bar-chart></app-bar-chart>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+                <button matButton type="button" class="overview-actions">
+                    <span>Overview</span>
+                    <mat-icon svgIcon="ph-light:arrow-right"></mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="4" rowspan="2">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Traffic source</mat-card-title>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                <app-donut-chart></app-donut-chart>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="4" rowspan="1">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Latest products</mat-card-title>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-footer>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="8" rowspan="1">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Latest orders</mat-card-title>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-footer>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

@@ -38,6 +38,29 @@ export interface CustomersInfo {
   signedUp: Date;
 }
 
+export interface Overview {
+  value: number;
+  percentage: number;
+}
+
+export interface Sales {
+  thisYear: Array<number>;
+  lastYear: Array<number>;
+}
+
+export interface LatestProducts {
+  image: string;
+  name: string;
+  dateUpdated: Date;
+}
+
+export interface LatestOrders {
+  order: string;
+  customer: string;
+  dateOrdered: Date;
+  status: string;
+}
+
 export class Data {
   sampleAccount: AccountType = {
     firstName: 'Sofia',
@@ -157,5 +180,66 @@ export class Data {
       phone: '313-812-8947',
       signedUp: new Date(),
     },
+  ];
+
+  budget: Overview = { value: 24000, percentage: 12 };
+
+  totalCustomers: Overview = { value: 1600, percentage: 16 };
+
+  taskProgress: Overview = { value: 0, percentage: 75.5 };
+
+  totalProfit: Overview = { value: 15000, percentage: 0 };
+
+  sales: Sales = {
+    thisYear: [18000, 16000, 5000, 8000, 3000, 14000, 14000, 16000, 17000, 19000, 18000, 20000],
+    lastYear: [12000, 11000, 4000, 6000, 2000, 9000, 9000, 10000, 11000, 12000, 13000, 13000],
+  };
+
+  trafficSource: { desktop: number; tablet: number; phone: number } = {
+    desktop: 63,
+    tablet: 15,
+    phone: 22,
+  };
+
+  latestProducts: Array<LatestProducts> = [
+    {
+      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-5.png',
+      name: 'Soja & Co. Eucalyptus',
+      dateUpdated: new Date(),
+    },
+    {
+      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-4.png',
+      name: 'Necessaire Body Lotion',
+      dateUpdated: new Date(),
+    },
+    {
+      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-3.png',
+      name: 'Ritual of Sakura',
+      dateUpdated: new Date(),
+    },
+    {
+      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-2.png',
+      name: 'Lancome Rouge',
+      dateUpdated: new Date(),
+    },
+    {
+      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-1.png',
+      name: 'Erbology Aloe Vera',
+      dateUpdated: new Date(),
+    },
+  ];
+
+  latestOrders: Array<LatestOrders> = [
+    { order: 'ORD-001', customer: 'Ekaterina Tankova', dateOrdered: new Date(), status: 'Pending' },
+    { order: 'ORD-002', customer: 'Cao Yu', dateOrdered: new Date(), status: 'Delivered' },
+    { order: 'ORD-004', customer: 'Alexa Richardson', dateOrdered: new Date(), status: 'Refunded' },
+    { order: 'ORD-005', customer: 'Anje Keizer', dateOrdered: new Date(), status: 'Pending' },
+    {
+      order: 'ORD-006',
+      customer: 'Clarke Gillebert',
+      dateOrdered: new Date(),
+      status: 'Delivered',
+    },
+    { order: 'ORD-007', customer: 'Adam Denisov', dateOrdered: new Date(), status: 'Delivered' },
   ];
 }
