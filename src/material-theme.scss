@@ -45,6 +45,53 @@ html {
     )
   );
 
+  mat-nav-list a[mat-list-item].active {
+    @include mat.list-overrides(
+      (
+        list-item-label-text-color: white,
+        list-item-hover-label-text-color: white,
+        list-item-hover-leading-icon-color: white,
+        list-item-leading-icon-color: white,
+      )
+    );
+  }
+
+  mat-card.overview > mat-card-content > mat-list > mat-list-item > span:first-of-type {
+    @include mat.list-overrides(
+      (
+        list-item-label-text-color: #212636,
+        list-item-label-text-size: 1rem,
+        list-item-label-text-line-height: 1.57,
+        list-item-hover-label-text-color: #212636,
+      )
+    );
+  }
+
+  @include mat.list-overrides(
+    (
+      active-indicator-color: white,
+      list-item-label-text-color: #b3b9c6,
+      list-item-hover-label-text-color: #b3b9c6,
+      list-item-label-text-line-height: 28px,
+      list-item-label-text-size: 0.875rem,
+      list-item-label-text-weight: 500,
+      list-item-label-text-tracking: 0,
+      list-item-supporting-text-tracking: 0,
+      list-item-focus-label-text-color: white,
+      list-item-one-line-container-height: 40px,
+      list-item-two-line-container-height: 76.1px,
+      list-item-leading-icon-start-space: 16px,
+      list-item-leading-icon-end-space: 8px,
+      list-item-leading-icon-color: #b3b9c6,
+      list-item-leading-icon-size: 20px,
+      list-item-supporting-text-color: #667085,
+      list-item-supporting-text-line-height: 1.57,
+      list-item-trailing-icon-size: 24px,
+      list-item-leading-avatar-shape: 8px,
+      list-item-leading-avatar-size: 48px,
+    )
+  );
+
   @include mat.card-overrides(
     (
       outlined-container-color: white,
@@ -97,13 +144,15 @@ html {
     )
   );
 
-  @include mat.icon-button-overrides(
-    (
-      icon-size: 18px,
-      state-layer-size: 26px,
-      touch-target-size: 26px,
-    )
-  );
+  mat-paginator {
+    @include mat.icon-button-overrides(
+      (
+        icon-size: 18px,
+        state-layer-size: 26px,
+        touch-target-size: 26px,
+      )
+    );
+  }
 
   @include mat.button-overrides(
     (
@@ -200,7 +249,7 @@ app-settings {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: calc(var(--mat-header-spacing) * 3 - 2px) calc((var(--mat-header-spacing) * 3) - 2px);
+  gap: calc(var(--mat-header-spacing) * 3);
   min-width: 0;
 }
 
@@ -224,7 +273,7 @@ app-page-heading {
 }
 
 app-search-box,
-mat-card[appearance='outlined']:not(.account) {
+mat-card[appearance='outlined']:not(.account, .overview) {
   width: 100%;
 }
 
@@ -317,6 +366,99 @@ mat-card[appearance='outlined'] > mat-card-header {
   }
 }
 
-mat-card[appearance='outlined'] > mat-card-content {
+mat-card[appearance='outlined'] > mat-card-content:not(> mat-list),
+mat-card[appearance='outlined'] > mat-card-content:not(> table) {
   padding: 32px 24px;
+}
+
+mat-card.overview > mat-card-content:has(> mat-list),
+mat-card.overview > mat-card-content:has(> table) {
+  padding: 0;
+  overflow: scroll;
+
+  & > mat-list {
+    padding: 0px;
+  }
+
+  & > table th[mat-header-cell]:first-child,
+  & > table th[mat-header-cell]:last-child {
+    border-radius: 0;
+  }
+}
+
+table[mat-table] {
+  background-color: transparent;
+  border-bottom: thin solid #ebebeb;
+  border-collapse: collapse;
+  min-width: 800px;
+  width: 100%;
+
+  & th[mat-header-cell].select,
+  & td[mat-cell].select {
+    padding: 0 0 0 24px;
+  }
+  & th[mat-header-cell] {
+    background-color: #f9fafb;
+    padding: 16px;
+
+    &:first-child {
+      border-radius: 20px 0 0 0;
+    }
+    &:last-child {
+      border-radius: 0 20px 0 0;
+    }
+  }
+  & td[mat-cell] {
+    padding: 16px;
+
+    & > div.complex-cell {
+      align-items: center;
+      display: flex;
+      font-weight: 500;
+      gap: calc(2 * var(--mat-header-spacing));
+
+      & > img[mat-card-avatar] {
+        margin-bottom: 0;
+      }
+    }
+  }
+  & tr[mat-row] {
+    &:active {
+      background-color: #ecebff;
+    }
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+}
+
+app-overview {
+  --grid-columns: 12;
+  --grid-column-spacing: calc(3 * var(--mat-header-spacing));
+  display: flex;
+  flex-wrap: wrap;
+
+  & > mat-card:nth-child(-n + 4) {
+    width: calc(
+      100% * 3 / var(--grid-columns) - (var(--grid-columns) - 3) *
+        (var(--grid-column-spacing) / var(--grid-columns))
+    );
+  }
+
+  & > mat-card:nth-child(5),
+  & > mat-card:nth-child(8) {
+    flex-basis: auto;
+    width: calc(
+      100% * 8 / var(--grid-columns) - (var(--grid-columns) - 8) *
+        (var(--grid-column-spacing) / var(--grid-columns))
+    );
+  }
+
+  & > mat-card:nth-child(6),
+  & > mat-card:nth-child(7) {
+    width: calc(
+      100% * 4 / var(--grid-columns) - (var(--grid-columns) - 4) *
+        (var(--grid-column-spacing) / var(--grid-columns))
+    );
+  }
 }

@@ -1,141 +1,181 @@
-<mat-grid-list cols="12" rowHeight="fit" gutterSize="24px">
-    <mat-grid-tile colspan="3" rowspan="1">
-        <mat-card appearance="outlined" class="overview-card">
-            <mat-card-content>
-                <div class="overview-icon" style="background-color: #635bff;">
-                    <mat-icon svgIcon="ph-light:currency-dollar"></mat-icon>
-                </div>
-                <div class="title-group">
-                    <mat-card-title>$24k</mat-card-title>
-                    <mat-card-subtitle>Budget</mat-card-subtitle>
-                </div>
-            </mat-card-content>
-            <mat-card-footer>
-                <div class="stats positive">
-                    <mat-icon svgIcon="ph-light:arrow-up"></mat-icon>
-                    <p>12%</p>
-                </div>
-                <span>Since last month</span>
-            </mat-card-footer>
-        </mat-card>
-    </mat-grid-tile>
+<mat-card appearance="outlined" class="overview overview-card">
+    <mat-card-content>
+        <div class="overview-icon" style="background-color: #635bff;">
+            <mat-icon svgIcon="ph-light:currency-dollar"></mat-icon>
+        </div>
+        <div class="title-group">
+            <mat-card-title>{{ '$' + valueFormatter(getValue('budget')) }}</mat-card-title>
+            <mat-card-subtitle>Budget</mat-card-subtitle>
+        </div>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="stats positive">
+            <mat-icon svgIcon="ph-light:arrow-up"></mat-icon>
+            <p>{{ getPercentage('budget') + '%' }}</p>
+        </div>
+        <span>Since last month</span>
+    </mat-card-footer>
+</mat-card>
 
-    <mat-grid-tile colspan="3" rowspan="1">
-        <mat-card appearance="outlined" class="overview-card">
-            <mat-card-content>
-                <div class="overview-icon" style="background-color: #15b79f;">
-                    <mat-icon svgIcon="ph-light:users"></mat-icon>
-                </div>
-                <div class="title-group">
-                    <mat-card-title>1.6k</mat-card-title>
-                    <mat-card-subtitle>Total<br>Customers</mat-card-subtitle>
-                </div>
-            </mat-card-content>
-            <mat-card-footer>
-                <div class="stats negative">
-                    <mat-icon svgIcon="ph-light:arrow-down"></mat-icon>
-                    <p>16%</p>
-                </div>
-                <span>Since last month</span>
-            </mat-card-footer>
-        </mat-card>
-    </mat-grid-tile>
+<mat-card appearance="outlined" class="overview overview-card">
+    <mat-card-content>
+        <div class="overview-icon" style="background-color: #15b79f;">
+            <mat-icon svgIcon="ph-light:users"></mat-icon>
+        </div>
+        <div class="title-group">
+            <mat-card-title>{{ valueFormatter(getValue('totalCustomers')) }}</mat-card-title>
+            <mat-card-subtitle>Total<br>Customers</mat-card-subtitle>
+        </div>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="stats negative">
+            <mat-icon svgIcon="ph-light:arrow-down"></mat-icon>
+            <p>{{ getPercentage('totalCustomers') + '%' }}</p>
+        </div>
+        <span>Since last month</span>
+    </mat-card-footer>
+</mat-card>
 
-    <mat-grid-tile colspan="3" rowspan="1">
-        <mat-card appearance="outlined" class="overview-card">
-            <mat-card-content>
-                <div class="overview-icon" style="background-color: #fb9c0c;">
-                    <mat-icon svgIcon="ph-light:list-bullets"></mat-icon>
-                </div>
-                <div class="title-group">
-                    <mat-card-title>75.5%</mat-card-title>
-                    <mat-card-subtitle>Task Progress</mat-card-subtitle>
-                </div>
-            </mat-card-content>
-            <mat-card-footer>
-                <mat-progress-bar mode="determinate" value="76"></mat-progress-bar>
-            </mat-card-footer>
-        </mat-card>
-    </mat-grid-tile>
+<mat-card appearance="outlined" class="overview overview-card">
+    <mat-card-content>
+        <div class="overview-icon" style="background-color: #fb9c0c;">
+            <mat-icon svgIcon="ph-light:list-bullets"></mat-icon>
+        </div>
+        <div class="title-group">
+            <mat-card-title>{{ getPercentage('taskProgress') + '%' }}</mat-card-title>
+            <mat-card-subtitle>Task Progress</mat-card-subtitle>
+        </div>
+    </mat-card-content>
+    <mat-card-footer>
+        <mat-progress-bar mode="determinate" [value]="getPercentage('taskProgress')"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>
 
-    <mat-grid-tile colspan="3" rowspan="1">
-        <mat-card appearance="outlined" class="overview-card">
-            <mat-card-content>
-                <div class="overview-icon" style="background-color: #635bff;">
-                    <mat-icon svgIcon="ph-light:receipt"></mat-icon>
-                </div>
-                <div class="title-group">
-                    <mat-card-title>$15k</mat-card-title>
-                    <mat-card-subtitle>Total Profit</mat-card-subtitle>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
+<mat-card appearance="outlined" class="overview overview-card">
+    <mat-card-content>
+        <div class="overview-icon" style="background-color: #635bff;">
+            <mat-icon svgIcon="ph-light:receipt"></mat-icon>
+        </div>
+        <div class="title-group">
+            <mat-card-title>{{ '$' + valueFormatter(getValue('totalProfit')) }}</mat-card-title>
+            <mat-card-subtitle>Total Profit</mat-card-subtitle>
+        </div>
+    </mat-card-content>
+</mat-card>
 
-    <mat-grid-tile colspan="8" rowspan="2">
-        <mat-card appearance="outlined">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title>Sales</mat-card-title>
-                    <button matButton type="button" class="overview-actions">
-                        <mat-icon svgIcon="ph-light:arrow-clockwise"></mat-icon>
-                        <span>Sync</span>
+<mat-card appearance="outlined" class="overview">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>Sales</mat-card-title>
+            <button matButton type="button" class="overview-actions">
+                <mat-icon svgIcon="ph-light:arrow-clockwise"></mat-icon>
+                <span>Sync</span>
+            </button>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <app-bar-chart [valueFormatter]="valueFormatter"></app-bar-chart>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <button matButton type="button" class="overview-actions">
+            <span>Overview</span>
+            <mat-icon svgIcon="ph-light:arrow-right"></mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card appearance="outlined" class="overview">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>Traffic source</mat-card-title>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <app-donut-chart></app-donut-chart>
+        <div class="legend">
+            <mat-card-title-group class="legend-item">
+                <mat-icon svgIcon="ph-light:desktop"></mat-icon>
+                <mat-card-title>Desktop</mat-card-title>
+                <mat-card-subtitle>{{ getTrafficSourceData('desktop') + '%' }}</mat-card-subtitle>
+            </mat-card-title-group>
+            <mat-card-title-group class="legend-item">
+                <mat-icon svgIcon="ph-light:device-tablet"></mat-icon>
+                <mat-card-title>Tablet</mat-card-title>
+                <mat-card-subtitle>{{ getTrafficSourceData('tablet') + '%' }}</mat-card-subtitle>
+            </mat-card-title-group>
+            <mat-card-title-group class="legend-item">
+                <mat-icon svgIcon="ph-light:phone"></mat-icon>
+                <mat-card-title>Phone</mat-card-title>
+                <mat-card-subtitle>{{ getTrafficSourceData('phone') + '%' }}</mat-card-subtitle>
+            </mat-card-title-group>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined" class="overview">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>Latest products</mat-card-title>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <mat-list>
+            @for (product of latestProducts; track product) {
+            <mat-list-item>
+                <img matListItemAvatar [src]="product.image" alt="" />
+                <span matListItemTitle>{{ product.name }}</span>
+                <span matListItemLine>{{ 'Updated' }} {{ product.dateUpdated | date: 'mediumDate' }}</span>
+                <div matListItemMeta>
+                    <button matIconButton>
+                        <mat-icon svgIcon="ph-light:dots-three-vertical"></mat-icon>
                     </button>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content>
-                <app-bar-chart></app-bar-chart>
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-                <button matButton type="button" class="overview-actions">
-                    <span>Overview</span>
-                    <mat-icon svgIcon="ph-light:arrow-right"></mat-icon>
-                </button>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>}
+        </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+        <button matButton type="button" class="overview-actions">
+            <span>View all</span>
+            <mat-icon svgIcon="ph-light:arrow-right"></mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>
 
-    <mat-grid-tile colspan="4" rowspan="2">
-        <mat-card appearance="outlined">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title>Traffic source</mat-card-title>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content>
-                <app-donut-chart></app-donut-chart>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="4" rowspan="1">
-        <mat-card appearance="outlined">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title>Latest products</mat-card-title>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-            </mat-card-content>
-            <mat-card-footer>
-            </mat-card-footer>
-        </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="8" rowspan="1">
-        <mat-card appearance="outlined">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title>Latest orders</mat-card-title>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-            </mat-card-content>
-            <mat-card-footer>
-            </mat-card-footer>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+<mat-card appearance="outlined" class="overview">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>Latest orders</mat-card-title>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <table mat-table [dataSource]="dataSource">
+            @for (column of columns; track column) {
+            <ng-container [matColumnDef]="column.columnDef">
+                <th mat-header-cell *matHeaderCellDef>
+                    {{column.header}}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    @if (column.header === 'Date') {
+                    {{column.cell(row) | date: 'mediumDate'}}
+                    }
+                    @else {
+                    {{column.cell(row)}}
+                    }
+                </td>
+            </ng-container>
+            }
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+    <mat-card-actions>
+        <button matButton type="button" class="overview-actions">
+            <span>View all</span>
+            <mat-icon svgIcon="ph-light:arrow-right"></mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

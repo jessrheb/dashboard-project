@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
+  activeLink: string | null = null;
+
   pagesLinks = [
     {
       name: 'Overview',

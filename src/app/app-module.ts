@@ -1,10 +1,11 @@
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgxPhosphorIconsModule } from 'ngx-phosphor-icons';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { App } from './app';
 import { AppRoutingModule } from './app-routing-module';

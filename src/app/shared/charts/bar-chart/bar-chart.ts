@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -35,6 +35,7 @@ export type ChartOptions = {
   styleUrl: './bar-chart.css',
 })
 export class BarChart {
+  @Input() valueFormatter!: any;
   @ViewChild('chart') chart!: ChartComponent;
   public chartOptions: ChartOptions;
 
@@ -87,9 +88,7 @@ export class BarChart {
             colors: '#667085',
           },
           formatter: (salesTotal: number) => {
-            return salesTotal > 999
-              ? Math.sign(salesTotal) * (Math.round(salesTotal / 100) / 10) + 'K'
-              : salesTotal.toString();
+            return this.valueFormatter(salesTotal);
           },
           offsetX: -10,
         },

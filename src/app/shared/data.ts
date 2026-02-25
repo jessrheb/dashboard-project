@@ -38,9 +38,15 @@ export interface CustomersInfo {
   signedUp: Date;
 }
 
-export interface Overview {
+export interface OverviewCards {
   value: number;
   percentage: number;
+}
+
+export interface TrafficSource {
+  desktop: number;
+  tablet: number;
+  phone: number;
 }
 
 export interface Sales {
@@ -182,20 +188,20 @@ export class Data {
     },
   ];
 
-  budget: Overview = { value: 24000, percentage: 12 };
+  budget: OverviewCards = { value: 24000, percentage: 12 };
 
-  totalCustomers: Overview = { value: 1600, percentage: 16 };
+  totalCustomers: OverviewCards = { value: 1600, percentage: 16 };
 
-  taskProgress: Overview = { value: 0, percentage: 75.5 };
+  taskProgress: OverviewCards = { value: 0, percentage: 75.5 };
 
-  totalProfit: Overview = { value: 15000, percentage: 0 };
+  totalProfit: OverviewCards = { value: 15000, percentage: 0 };
 
   sales: Sales = {
     thisYear: [18000, 16000, 5000, 8000, 3000, 14000, 14000, 16000, 17000, 19000, 18000, 20000],
     lastYear: [12000, 11000, 4000, 6000, 2000, 9000, 9000, 10000, 11000, 12000, 13000, 13000],
   };
 
-  trafficSource: { desktop: number; tablet: number; phone: number } = {
+  trafficSource: TrafficSource = {
     desktop: 63,
     tablet: 15,
     phone: 22,
@@ -230,16 +236,16 @@ export class Data {
   ];
 
   latestOrders: Array<LatestOrders> = [
-    { order: 'ORD-001', customer: 'Ekaterina Tankova', dateOrdered: new Date(), status: 'Pending' },
-    { order: 'ORD-002', customer: 'Cao Yu', dateOrdered: new Date(), status: 'Delivered' },
-    { order: 'ORD-004', customer: 'Alexa Richardson', dateOrdered: new Date(), status: 'Refunded' },
-    { order: 'ORD-005', customer: 'Anje Keizer', dateOrdered: new Date(), status: 'Pending' },
+    { order: 'ORD-001', customer: 'Adam Denisov', dateOrdered: new Date(), status: 'Delivered' },
     {
-      order: 'ORD-006',
+      order: 'ORD-002',
       customer: 'Clarke Gillebert',
       dateOrdered: new Date(),
       status: 'Delivered',
     },
-    { order: 'ORD-007', customer: 'Adam Denisov', dateOrdered: new Date(), status: 'Delivered' },
+    { order: 'ORD-003', customer: 'Anje Keizer', dateOrdered: new Date(), status: 'Pending' },
+    { order: 'ORD-004', customer: 'Alexa Richardson', dateOrdered: new Date(), status: 'Refunded' },
+    { order: 'ORD-006', customer: 'Cao Yu', dateOrdered: new Date(), status: 'Delivered' },
+    { order: 'ORD-007', customer: 'Ekaterina Tankova', dateOrdered: new Date(), status: 'Pending' },
   ];
 }
