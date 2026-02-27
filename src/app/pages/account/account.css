@@ -12,6 +12,12 @@
   }
 }
 
+/* @media (min-width: 1200px) {
+  mat-card.account.info {
+    width: calc(100% * 4 / 12 - 12 - 4) * (var(--mat-header-spacing)) / var(--mat-header-spacing);
+  }
+} */
+
 mat-card.account {
   height: fit-content;
 
@@ -75,6 +81,6 @@ mat-card.account {
   &.form {
     flex-basis: auto;
     flex-grow: 0;
-    width: calc(100% - 332px - calc((var(--mat-header-spacing) * 3) - 2px));
+    width: calc(100% - 332px - calc((var(--mat-header-spacing) * 3)));
   }
 }

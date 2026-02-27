@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatTableDataSource } from '@angular/material/table';
+
 import {
   Data,
   LatestOrders,
@@ -7,7 +9,6 @@ import {
   OverviewCards,
   TrafficSource,
 } from '../../shared/data';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-overview',
@@ -48,22 +49,29 @@ export class Overview implements OnInit {
       cell: (element: LatestOrders) => `${element.status}`,
     },
   ];
+
   dataSource!: MatTableDataSource<LatestOrders>;
   displayedColumns: Array<string> = [];
   headers: Array<string> = this.columns.map((column) => column.columnDef);
 
-  constructor(private readonly data: Data) {}
-
-  getValue(item: string) {
-    return this.overviewData[item as keyof typeof this.overviewData].value;
+  constructor(private readonly data: Data) {
+    this.dataSource = new MatTableDataSource<LatestOrders>(this.data.latestOrders);
   }
 
-  getPercentage(item: string) {
-    return this.overviewData[item as keyof typeof this.overviewData].percentage;
+  get budget() {
+    return this.overviewData.budget;
   }
 
-  getTrafficSourceData(item: string) {
-    return this.trafficSource[item as keyof typeof this.trafficSource];
+  get totalCustomers() {
+    return this.overviewData.totalCustomers;
+  }
+
+  get taskProgress() {
+    return this.overviewData.taskProgress;
+  }
+
+  get totalProfit() {
+    return this.overviewData.totalProfit;
   }
 
   valueFormatter(value: number) {
@@ -81,7 +89,6 @@ export class Overview implements OnInit {
     this.latestProducts = this.data.latestProducts;
     this.latestOrders = this.data.latestOrders;
 
-    this.dataSource = new MatTableDataSource<LatestOrders>(this.data.latestOrders);
     this.displayedColumns.push(...this.headers);
   }
 }

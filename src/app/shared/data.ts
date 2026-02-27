@@ -236,16 +236,16 @@ export class Data {
   ];
 
   latestOrders: Array<LatestOrders> = [
-    { order: 'ORD-001', customer: 'Adam Denisov', dateOrdered: new Date(), status: 'Delivered' },
+    { order: 'ORD-007', customer: 'Ekaterina Tankova', dateOrdered: new Date(), status: 'Pending' },
+    { order: 'ORD-006', customer: 'Cao Yu', dateOrdered: new Date(), status: 'Delivered' },
+    { order: 'ORD-004', customer: 'Alexa Richardson', dateOrdered: new Date(), status: 'Refunded' },
+    { order: 'ORD-003', customer: 'Anje Keizer', dateOrdered: new Date(), status: 'Pending' },
     {
       order: 'ORD-002',
       customer: 'Clarke Gillebert',
       dateOrdered: new Date(),
       status: 'Delivered',
     },
-    { order: 'ORD-003', customer: 'Anje Keizer', dateOrdered: new Date(), status: 'Pending' },
-    { order: 'ORD-004', customer: 'Alexa Richardson', dateOrdered: new Date(), status: 'Refunded' },
-    { order: 'ORD-006', customer: 'Cao Yu', dateOrdered: new Date(), status: 'Delivered' },
-    { order: 'ORD-007', customer: 'Ekaterina Tankova', dateOrdered: new Date(), status: 'Pending' },
+    { order: 'ORD-001', customer: 'Adam Denisov', dateOrdered: new Date(), status: 'Delivered' },
   ];
 }

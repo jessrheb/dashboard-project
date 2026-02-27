@@ -41,7 +41,7 @@ export class DonutChart {
       chart: {
         height: '289px',
         type: 'donut',
-        width: '282px',
+        width: '100%',
       },
       labels: Object.keys(this.data.trafficSource).map((label) =>
         label.replace(/^./, (char) => char.toUpperCase()),

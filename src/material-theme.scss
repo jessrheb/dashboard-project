@@ -67,10 +67,17 @@ html {
     );
   }
 
+  nav > mat-nav-list {
+    @include mat.list-overrides(
+      (
+        list-item-label-text-color: #b3b9c6,
+      )
+    );
+  }
+
   @include mat.list-overrides(
     (
       active-indicator-color: white,
-      list-item-label-text-color: #b3b9c6,
       list-item-hover-label-text-color: #b3b9c6,
       list-item-label-text-line-height: 28px,
       list-item-label-text-size: 0.875rem,
@@ -200,6 +207,41 @@ html {
   )
 );
 
+.delivered {
+  @include mat.chips-overrides(
+    (
+      elevated-container-color: #15b79f,
+    )
+  );
+}
+
+.pending {
+  @include mat.chips-overrides(
+    (
+      elevated-container-color: #fb9c0c,
+    )
+  );
+}
+
+.refunded {
+  @include mat.chips-overrides(
+    (
+      elevated-container-color: #f04438,
+    )
+  );
+}
+
+@include mat.chips-overrides(
+  (
+    container-shape-radius: 16px,
+    container-height: 24px,
+    label-text-size: 0.8125rem,
+    outline-width: 0,
+    label-text-color: white,
+    label-text-weight: 400,
+  )
+);
+
 body {
   background-color: white;
   color: #212636;
@@ -214,12 +256,18 @@ body {
   margin: 0;
 }
 
+@media (min-width: 1440px) {
+  main {
+    max-width: 1440px;
+  }
+}
+
 main {
   box-sizing: border-box;
   height: fit-content;
   margin-left: auto;
   margin-right: auto;
-  padding: 62px calc(3 * var(--mat-header-spacing)) 64px calc((3 * var(--mat-header-spacing)) - 1px);
+  padding: 64px calc(3 * var(--mat-header-spacing));
   width: 100%;
 }
 
@@ -268,12 +316,11 @@ app-page-heading {
     font-weight: 500;
     line-height: 1.2;
     margin: 0;
-    padding: 1px 0 0 1px;
   }
 }
 
 app-search-box,
-mat-card[appearance='outlined']:not(.account, .overview) {
+mat-card {
   width: 100%;
 }
 
