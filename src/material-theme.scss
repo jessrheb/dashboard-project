@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  --box-shadow: 0 5px 22px 0 rgba(0, 0, 0, 0.04);
+  --box-shadow: 0 5px 22px 0 rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.06);
   --mat-header-spacing: 8px;
   --mat-sidenav-container-background-color: #121621;
   --mat-sidenav-container-text-color: #b3b9c6;
   --mat-sidenav-container-width: 280px;
+  --grid-columns: 12;
+  --grid-column-spacing: calc(3 * var(--mat-header-spacing));
 }
 
 html {
@@ -105,6 +107,7 @@ html {
       outlined-container-elevation: var(--box-shadow),
       outlined-container-shape: 20px,
       outlined-outline-color: #ebebeb,
+      outlined-outline-width: 0,
       subtitle-text-color: #667085,
       subtitle-text-line-height: 1.57,
       subtitle-text-size: 0.875rem,
@@ -164,7 +167,7 @@ html {
   @include mat.button-overrides(
     (
       filled-container-color: #635bff,
-      filled-container-height: 42.5px,
+      filled-container-height: 40.5px,
       filled-container-shape: 12px,
       filled-horizontal-padding: 20px,
       filled-label-text-tracking: 0,
@@ -256,6 +259,42 @@ body {
   margin: 0;
 }
 
+@media (min-width: 1200px) {
+  app-overview {
+    & > mat-card.overview-card:nth-child(-n + 4) {
+      width: calc(
+        100% * (3 / var(--grid-columns)) - (var(--grid-columns) - 3) *
+          (var(--grid-column-spacing) / var(--grid-columns))
+      ) !important;
+    }
+
+    & > mat-card.overview:nth-child(5),
+    & > mat-card.overview:nth-child(8) {
+      width: calc(
+        100% * (8 / var(--grid-columns)) - (var(--grid-columns) - 8) *
+          (var(--grid-column-spacing) / var(--grid-columns))
+      ) !important;
+    }
+
+    & > mat-card.overview:nth-child(6),
+    & > mat-card.overview:nth-child(7) {
+      width: calc(
+        100% * (4 / var(--grid-columns)) - (var(--grid-columns) - 4) *
+          (var(--grid-column-spacing) / var(--grid-columns))
+      ) !important;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  app-overview > mat-card.overview-card:nth-child(-n + 4) {
+    width: calc(
+      100% * (6 / var(--grid-columns)) - (var(--grid-columns) - 6) *
+        (var(--grid-column-spacing) / var(--grid-columns))
+    );
+  }
+}
+
 @media (min-width: 1440px) {
   main {
     max-width: 1440px;
@@ -273,20 +312,6 @@ main {
 
 p {
   margin: 0;
-}
-
-@media (max-width: 1200px) {
-  app-account {
-    flex-wrap: wrap !important;
-
-    & mat-card.account.info {
-      width: 100% !important;
-    }
-
-    & mat-card.account.form {
-      width: 100% !important;
-    }
-  }
 }
 
 app-account,
@@ -421,7 +446,7 @@ mat-card[appearance='outlined'] > mat-card-content:not(> table) {
 mat-card.overview > mat-card-content:has(> mat-list),
 mat-card.overview > mat-card-content:has(> table) {
   padding: 0;
-  overflow: scroll;
+  overflow: auto;
 
   & > mat-list {
     padding: 0px;
@@ -480,31 +505,12 @@ table[mat-table] {
 }
 
 app-overview {
-  --grid-columns: 12;
-  --grid-column-spacing: calc(3 * var(--mat-header-spacing));
   display: flex;
   flex-wrap: wrap;
 
-  & > mat-card:nth-child(-n + 4) {
+  & > mat-card.overview-card {
     width: calc(
-      100% * 3 / var(--grid-columns) - (var(--grid-columns) - 3) *
-        (var(--grid-column-spacing) / var(--grid-columns))
-    );
-  }
-
-  & > mat-card:nth-child(5),
-  & > mat-card:nth-child(8) {
-    flex-basis: auto;
-    width: calc(
-      100% * 8 / var(--grid-columns) - (var(--grid-columns) - 8) *
-        (var(--grid-column-spacing) / var(--grid-columns))
-    );
-  }
-
-  & > mat-card:nth-child(6),
-  & > mat-card:nth-child(7) {
-    width: calc(
-      100% * 4 / var(--grid-columns) - (var(--grid-columns) - 4) *
+      100% * (12 / var(--grid-columns)) - (var(--grid-columns) - 12) *
         (var(--grid-column-spacing) / var(--grid-columns))
     );
   }

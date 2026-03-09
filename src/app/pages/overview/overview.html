@@ -24,7 +24,7 @@
         </div>
         <div class="title-group">
             <mat-card-title>{{ valueFormatter(totalCustomers.value) }}</mat-card-title>
-            <mat-card-subtitle>Total<br>Customers</mat-card-subtitle>
+            <mat-card-subtitle>Total Customers</mat-card-subtitle>
         </div>
     </mat-card-content>
     <mat-card-footer>
@@ -162,11 +162,7 @@
                     @if (column.header === 'Date') {
                     {{column.cell(row) | date: 'mediumDate'}}
                     } @else if (column.header === 'Status') {
-                    <mat-chip [ngClass]="{
-                        'delivered': column.cell(row) === 'Delivered', 
-                        'pending': column.cell(row) === 'Pending', 
-                        'refunded': column.cell(row) === 'Refunded'
-                        }">
+                    <mat-chip [ngClass]="column.cell(row).toLowerCase()">
                         {{column.cell(row)}}
                     </mat-chip>
                     }

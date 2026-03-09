@@ -1,5 +1,4 @@
 section.complex-heading {
-  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -10,9 +9,7 @@ section.complex-heading {
   }
 }
 section.complex-buttons {
-  align-items: center;
   display: flex;
   flex-direction: row;
   gap: var(--mat-header-spacing);
-  padding: 1px 0 0 1px;
 }
