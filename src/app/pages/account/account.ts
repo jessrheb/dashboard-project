@@ -1,32 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FloatLabelType, SubscriptSizing } from '@angular/material/form-field';
+import { Observable } from 'rxjs';
 
-import { AccountType, Data } from '../../shared/data';
+import { UserInfo, Data } from '../../shared/data';
+import { UsersService } from '../../shared/users';
 
 @Component({
   selector: 'app-account',
   standalone: false,
   templateUrl: './account.html',
   styleUrl: './account.css',
-  providers: [Data],
 })
 export class Account implements OnInit {
   floatLabel = new FormControl('auto' as FloatLabelType);
   subscriptSizing!: SubscriptSizing;
 
-  accounts: Array<AccountType> = [];
+  loggedAccount$!: Observable<UserInfo>;
 
   states: Array<string> = [];
 
-  get loggedAccount() {
-    return this.accounts[0];
-  }
-
-  constructor(private readonly data: Data) {}
+  constructor(
+    private readonly data: Data,
+    private readonly usersService: UsersService,
+  ) {}
 
   ngOnInit(): void {
-    this.accounts.push(this.data.sampleAccount);
+    this.loggedAccount$ = this.usersService.fetchLoggedUser(1);
+
     this.states = this.data.states;
   }
 }

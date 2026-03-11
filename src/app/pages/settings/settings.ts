@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountType, Data, NotificationSettings } from '../../shared/data';
+import { Data, NotificationSettings } from '../../shared/data';
 
 @Component({
   selector: 'app-settings',
@@ -9,15 +9,11 @@ import { AccountType, Data, NotificationSettings } from '../../shared/data';
   providers: [Data],
 })
 export class Settings implements OnInit {
-  accounts: Array<AccountType> = [];
-
-  get notificationSettings(): NotificationSettings {
-    return this.accounts[0].notificationSettings;
-  }
+  notificationSettings!: NotificationSettings;
 
   constructor(private readonly data: Data) {}
 
   ngOnInit(): void {
-    this.accounts.push(this.data.sampleAccount);
+    this.notificationSettings = this.data.notificationSettings;
   }
 }

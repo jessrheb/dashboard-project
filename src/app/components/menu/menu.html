@@ -1,7 +1,7 @@
-<img [src]="loggedAccount.imgSrc" [alt]="loggedAccount.imgAlt" [matMenuTriggerFor]="menu" class="menu-avatar"
-    (click)="onClickingAvatar()">
+<img *ngIf="loggedAccount$ | async as loggedAccount" [src]="loggedAccount.avatar" alt="" [matMenuTriggerFor]="menu"
+    class="menu-avatar" (click)="onClickingAvatar()">
 <mat-menu class="user-menu" #menu="matMenu">
-    <hgroup>
+    <hgroup *ngIf="loggedAccount$ | async as loggedAccount">
         <h6 class="user-name">{{ loggedAccount.firstName }} {{ loggedAccount.lastName }}</h6>
         <p class="user-email">{{ loggedAccount.email }}</p>
     </hgroup>

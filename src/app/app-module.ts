@@ -23,6 +23,7 @@ import { SearchBox } from './components/search-box/search-box';
 import { PageHeading } from './components/page-heading/page-heading';
 import { BarChart } from './shared/charts/bar-chart/bar-chart';
 import { DonutChart } from './shared/charts/donut-chart/donut-chart';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { DonutChart } from './shared/charts/donut-chart/donut-chart';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideHttpClient(),
     Data,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: 'dynamic' } },
   ],

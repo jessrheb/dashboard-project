@@ -9,15 +9,17 @@ export interface NotificationSettings {
   };
 }
 
-export interface AccountType {
+export interface UserInfo {
+  id: number;
+  createdAt: string;
   firstName: string;
   lastName: string;
-  imgSrc: string;
-  imgAlt: string;
-  location: string;
+  avatar: string;
+  city: string;
+  state: string;
   timezone: string;
   email: string;
-  notificationSettings: NotificationSettings;
+  phoneNumber: string;
 }
 
 export interface Applications {
@@ -68,23 +70,14 @@ export interface LatestOrders {
 }
 
 export class Data {
-  sampleAccount: AccountType = {
-    firstName: 'Sofia',
-    lastName: 'Rivers',
-    imgSrc: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar.png',
-    imgAlt: 'Avatar depicting Sofia Rivers',
-    location: 'Los Angeles USA',
-    timezone: 'GMT-7',
-    email: 'sofia@devias.io',
-    notificationSettings: {
-      email: {
-        productUpdates: true,
-        securityUpdates: false,
-      },
-      phone: {
-        email: true,
-        securityUpdates: false,
-      },
+  notificationSettings: NotificationSettings = {
+    email: {
+      productUpdates: true,
+      securityUpdates: false,
+    },
+    phone: {
+      email: true,
+      securityUpdates: false,
     },
   };
 

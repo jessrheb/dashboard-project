@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { AccountType, Data } from '../../shared/data';
+import { Observable } from 'rxjs';
+
+import { UserInfo } from '../../shared/data';
+import { UsersService } from '../../shared/users';
 
 @Component({
   selector: 'app-menu',
@@ -12,15 +15,15 @@ export class Menu implements OnInit {
   @ViewChild(MatMenuTrigger)
   trigger: MatMenuTrigger = new MatMenuTrigger();
 
-  constructor(private readonly data: Data) {}
+  loggedAccount$!: Observable<UserInfo>;
 
-  loggedAccount!: AccountType;
+  constructor(private readonly usersService: UsersService) {}
 
   onClickingAvatar() {
     this.trigger.openMenu();
   }
 
   ngOnInit(): void {
-    this.loggedAccount = this.data.sampleAccount;
+    this.loggedAccount$ = this.usersService.fetchLoggedUser(1);
   }
 }
