@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Observable, Subscription } from 'rxjs';
 
-import { CustomersInfo, Data } from '../../shared/data';
+import { CustomersInfo } from '../../shared/data';
+import { UsersService } from '../../shared/users';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-customers',
   standalone: false,
   templateUrl: './customers.html',
   styleUrl: './customers.css',
 })
-export class Customers implements OnInit {
+export class Customers implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   columns = [
     {
       columnDef: 'id',
@@ -19,7 +24,7 @@ export class Customers implements OnInit {
     {
       columnDef: 'name',
       header: 'Name',
-      cell: (element: CustomersInfo) => `${element.name}`,
+      cell: (element: CustomersInfo) => `${element.firstName} ${element.lastName}`,
     },
     {
       columnDef: 'avatar',
@@ -29,12 +34,13 @@ export class Customers implements OnInit {
     {
       columnDef: 'email',
       header: 'Email',
-      cell: (element: CustomersInfo) => `${element.email}`,
+      cell: (element: CustomersInfo) => `${element.email.toLowerCase()}`,
     },
     {
       columnDef: 'location',
       header: 'Location',
-      cell: (element: CustomersInfo) => `${element.location}`,
+      cell: (element: CustomersInfo) =>
+        `${element.location.city}, ${element.location.state}, ${element.location.country}`,
     },
     {
       columnDef: 'phone',
@@ -44,18 +50,22 @@ export class Customers implements OnInit {
     {
       columnDef: 'signedup',
       header: 'Signed Up',
-      cell: (element: CustomersInfo) => `${element.signedUp}`,
+      cell: (element: CustomersInfo) => `${element.createdAt}`,
     },
   ];
-  dataSource!: MatTableDataSource<CustomersInfo>;
+  customers$!: Observable<CustomersInfo[]>;
+  dataSource: MatTableDataSource<CustomersInfo> = new MatTableDataSource<CustomersInfo>([]);
   selection = new SelectionModel<CustomersInfo>(true, []);
+  private subscription!: Subscription;
 
   displayedColumns: Array<string> = ['select'];
   headers: Array<string> = this.columns
     .map((column) => column.columnDef)
     .filter((header) => header !== 'id' && header !== 'avatar');
 
-  constructor(private readonly data: Data) {}
+  constructor(private readonly usersService: UsersService) {
+    this.customers$ = this.usersService.fetchCustomers();
+  }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -80,7 +90,17 @@ export class Customers implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<CustomersInfo>(this.data.customersInfo);
+    this.subscription = this.customers$.subscribe((customers) => {
+      this.dataSource.data = customers;
+    });
     this.displayedColumns.push(...this.headers);
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }
