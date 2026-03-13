@@ -1,65 +1,67 @@
 <app-page-heading [pageTitle]="'Account'"></app-page-heading>
 
-<mat-card *ngIf="loggedAccount$ | async as loggedAccount" appearance="outlined" class="account info">
-    <mat-card-header class="info">
-        <img mat-card-avatar mat-card-sm-image [src]="loggedAccount.avatar" alt="">
-    </mat-card-header>
-    <mat-card-content class="info">
-        <h5>{{ loggedAccount.firstName }} {{ loggedAccount.lastName }}</h5>
-        <p>{{ loggedAccount.city}} {{loggedAccount.state}}</p>
-        <p>GMT -7</p>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-    <mat-card-actions>
-        <button matButton class="info">Upload picture</button>
-    </mat-card-actions>
-</mat-card>
-<mat-card *ngIf="loggedAccount$ | async as loggedAccount" appearance="outlined" class="account form">
-    <mat-card-header class="form">
-        <mat-card-title-group>
-            <mat-card-title>Profile</mat-card-title>
-            <mat-card-subtitle>The information can be edited</mat-card-subtitle>
-        </mat-card-title-group>
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-content class="form">
-        <form>
-            <mat-form-field appearance="outline">
-                <mat-label>First name</mat-label>
-                <input matInput [value]="loggedAccount.firstName" required>
-            </mat-form-field>
+<ng-container *ngIf="loggedAccount$ | async as loggedAccount">
+    <mat-card appearance="outlined" class="account info">
+        <mat-card-header class="info">
+            <img mat-card-avatar mat-card-sm-image [src]="loggedAccount.avatar" alt="">
+        </mat-card-header>
+        <mat-card-content class="info">
+            <h5>{{ loggedAccount.firstName }} {{ loggedAccount.lastName }}</h5>
+            <p>{{ loggedAccount.city}} {{loggedAccount.state}}</p>
+            <p>GMT -7</p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <button matButton class="info">Upload picture</button>
+        </mat-card-actions>
+    </mat-card>
+    <mat-card appearance="outlined" class="account form">
+        <mat-card-header class="form">
+            <mat-card-title-group>
+                <mat-card-title>Profile</mat-card-title>
+                <mat-card-subtitle>The information can be edited</mat-card-subtitle>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="form">
+            <form>
+                <mat-form-field appearance="outline">
+                    <mat-label>First name</mat-label>
+                    <input matInput [value]="loggedAccount.firstName" required>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Last name</mat-label>
-                <input matInput [value]="loggedAccount.lastName" required>
-            </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Last name</mat-label>
+                    <input matInput [value]="loggedAccount.lastName" required>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Email address</mat-label>
-                <input matInput type="email" [value]="loggedAccount.email" required>
-            </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email address</mat-label>
+                    <input matInput type="email" [value]="loggedAccount.email" required>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Phone number</mat-label>
-                <input matInput>
-            </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone number</mat-label>
+                    <input matInput type="text" [value]="loggedAccount.phoneNumber">
+                </mat-form-field>
 
-            <mat-form-field appearance="outline" floatLabel="always">
-                <mat-label>State</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let state of states" [value]="state.replaceAll(' ', '-').toLowerCase()"> {{
-                        state }}</mat-option>
-                </mat-select>
-            </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>State</mat-label>
+                    <mat-select [placeholder]="loggedAccount.state">
+                        <mat-option *ngFor="let state of states"> {{
+                            state }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>City</mat-label>
-                <input matInput>
-            </mat-form-field>
-        </form>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-    <mat-card-actions class="form">
-        <button matButton="filled" class="form">Save details</button>
-    </mat-card-actions>
-</mat-card>
+                <mat-form-field appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput [value]="loggedAccount.city">
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions class="form">
+            <button matButton="filled" class="form">Save details</button>
+        </mat-card-actions>
+    </mat-card>
+</ng-container>
