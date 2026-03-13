@@ -26,8 +26,7 @@ export class Account implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loggedAccount$ = this.usersService.fetchLoggedUser(1);
-
+    this.loggedAccount$ = this.usersService.fetchLoggedUser();
     this.states = this.data.states;
   }
 }

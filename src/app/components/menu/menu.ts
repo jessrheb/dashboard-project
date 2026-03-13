@@ -24,6 +24,6 @@ export class Menu implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loggedAccount$ = this.usersService.fetchLoggedUser(1);
+    this.loggedAccount$ = this.usersService.fetchLoggedUser();
   }
 }

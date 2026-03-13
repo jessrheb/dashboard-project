@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Applications, Data } from '../../shared/data';
+import { Applications } from '../../shared/data';
+import { UsersService } from '../../shared/users';
 
 @Component({
   selector: 'app-integrations',
@@ -9,11 +11,11 @@ import { Applications, Data } from '../../shared/data';
   styleUrl: './integrations.css',
 })
 export class Integrations implements OnInit {
-  integrationApps: Array<Applications> = [];
+  integrations$!: Observable<Applications[]>;
 
-  constructor(private readonly data: Data) {}
+  constructor(private readonly usersService: UsersService) {}
 
   ngOnInit(): void {
-    this.integrationApps = this.data.integrationApps;
+    this.integrations$ = this.usersService.fetchIntegrations();
   }
 }

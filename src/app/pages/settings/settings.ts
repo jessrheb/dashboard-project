@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Data, NotificationSettings } from '../../shared/data';
+import { Observable } from 'rxjs';
+
+import { NotificationSettings } from '../../shared/data';
+import { UsersService } from '../../shared/users';
 
 @Component({
   selector: 'app-settings',
   standalone: false,
   templateUrl: './settings.html',
   styleUrl: './settings.css',
-  providers: [Data],
 })
 export class Settings implements OnInit {
-  notificationSettings!: NotificationSettings;
+  notificationSettings$!: Observable<NotificationSettings>;
 
-  constructor(private readonly data: Data) {}
+  constructor(private readonly usersService: UsersService) {}
 
   ngOnInit(): void {
-    this.notificationSettings = this.data.notificationSettings;
+    this.notificationSettings$ = this.usersService.fetchNotificationSettings();
   }
 }
