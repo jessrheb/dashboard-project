@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
-import { Applications, CustomersInfo, NotificationSettings, UserInfo } from './data';
+import {
+  Applications,
+  CustomersInfo,
+  LatestOrders,
+  LatestProducts,
+  NotificationSettings,
+  UserInfo,
+} from './data';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +31,13 @@ export class UsersService {
 
   fetchCustomers() {
     return this.http.get<CustomersInfo[]>(`http://localhost:9000/customers`);
+  }
+
+  fetchOrders() {
+    return this.http.get<LatestOrders[]>(`http://localhost:9000/orders`);
+  }
+
+  fetchProducts() {
+    return this.http.get<LatestProducts[]>(`http://localhost:9000/products`);
   }
 }

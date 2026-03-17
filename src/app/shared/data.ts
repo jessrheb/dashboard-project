@@ -62,69 +62,73 @@ export interface Sales {
   lastYear: Array<number>;
 }
 
-export interface LatestProducts {
-  image: string;
-  name: string;
-  dateUpdated: Date;
-}
-
 export interface LatestOrders {
-  order: string;
+  id: string;
   customer: string;
-  dateOrdered: Date;
+  orderDate: Date;
   status: string;
 }
 
-export class Data {
-  states = ['Alabama', 'New York', 'San Francisco', 'Los Angeles'];
+export interface LatestProducts {
+  id: string;
+  name: string;
+  picture: string;
+  updatedAt: Date;
+}
 
-  /*   customersInfo: Array<CustomersInfo> = [
-    {
-      id: 1,
-      name: 'Alcides Antonio',
-      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-10.png',
-      email: 'alcides.antonio@devias.io',
-      location: 'Madrid, Comunidad de Madrid, Spain',
-      phone: '908-691-3242',
-      signedUp: new Date(),
-    },
-    {
-      id: 2,
-      name: 'Marcus Finn',
-      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-9.png',
-      email: 'marcus.finn@devias.io',
-      location: 'Carson City, Nevada, USA',
-      phone: '415-907-2647',
-      signedUp: new Date(),
-    },
-    {
-      id: 3,
-      name: 'Jie Yan',
-      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-8.png',
-      email: 'jie.yan.song@devias.io',
-      location: 'North Canton, Ohio, USA',
-      phone: '770-635-2682',
-      signedUp: new Date(),
-    },
-    {
-      id: 4,
-      name: 'Nasimiyu Danai',
-      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-7.png',
-      email: 'nasimiyu.danai@devias.io',
-      location: 'Salt Lake City, Utah, USA',
-      phone: '801-301-7894',
-      signedUp: new Date(),
-    },
-    {
-      id: 5,
-      name: 'Iulia Albu',
-      avatar: 'https://dashboard-djonathas-projects.vercel.app/assets/avatar-6.png',
-      email: 'iulia.albu@devias.io',
-      location: 'Murray, Utah, USA',
-      phone: '313-812-8947',
-      signedUp: new Date(),
-    },
-  ]; */
+export class Data {
+  states = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming',
+  ];
 
   budget: OverviewCards = { value: 24000, percentage: 12 };
 
@@ -144,46 +148,4 @@ export class Data {
     tablet: 15,
     phone: 22,
   };
-
-  latestProducts: Array<LatestProducts> = [
-    {
-      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-5.png',
-      name: 'Soja & Co. Eucalyptus',
-      dateUpdated: new Date(),
-    },
-    {
-      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-4.png',
-      name: 'Necessaire Body Lotion',
-      dateUpdated: new Date(),
-    },
-    {
-      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-3.png',
-      name: 'Ritual of Sakura',
-      dateUpdated: new Date(),
-    },
-    {
-      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-2.png',
-      name: 'Lancome Rouge',
-      dateUpdated: new Date(),
-    },
-    {
-      image: 'https://dashboard-djonathas-projects.vercel.app/assets/product-1.png',
-      name: 'Erbology Aloe Vera',
-      dateUpdated: new Date(),
-    },
-  ];
-
-  latestOrders: Array<LatestOrders> = [
-    { order: 'ORD-007', customer: 'Ekaterina Tankova', dateOrdered: new Date(), status: 'Pending' },
-    { order: 'ORD-006', customer: 'Cao Yu', dateOrdered: new Date(), status: 'Delivered' },
-    { order: 'ORD-004', customer: 'Alexa Richardson', dateOrdered: new Date(), status: 'Refunded' },
-    { order: 'ORD-003', customer: 'Anje Keizer', dateOrdered: new Date(), status: 'Pending' },
-    {
-      order: 'ORD-002',
-      customer: 'Clarke Gillebert',
-      dateOrdered: new Date(),
-      status: 'Delivered',
-    },
-    { order: 'ORD-001', customer: 'Adam Denisov', dateOrdered: new Date(), status: 'Delivered' },
-  ];
 }

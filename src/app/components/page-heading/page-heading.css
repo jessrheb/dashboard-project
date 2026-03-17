@@ -1,4 +1,4 @@
-section.complex-heading {
+header.complex-heading {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -15,6 +15,8 @@ import { MatPaginator } from '@angular/material/paginator';
 export class Customers implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  customers$!: Observable<CustomersInfo[]>;
+
   columns = [
     {
       columnDef: 'id',
@@ -53,7 +55,7 @@ export class Customers implements OnInit, OnDestroy, AfterViewInit {
       cell: (element: CustomersInfo) => `${element.createdAt}`,
     },
   ];
-  customers$!: Observable<CustomersInfo[]>;
+
   dataSource: MatTableDataSource<CustomersInfo> = new MatTableDataSource<CustomersInfo>([]);
   selection = new SelectionModel<CustomersInfo>(true, []);
   private subscription!: Subscription;
@@ -93,6 +95,7 @@ export class Customers implements OnInit, OnDestroy, AfterViewInit {
     this.subscription = this.customers$.subscribe((customers) => {
       this.dataSource.data = customers;
     });
+
     this.displayedColumns.push(...this.headers);
   }
 

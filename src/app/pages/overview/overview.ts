@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable, Subscription } from 'rxjs';
 
 import {
   Data,
@@ -9,6 +9,7 @@ import {
   OverviewCards,
   TrafficSource,
 } from '../../shared/data';
+import { UsersService } from '../../shared/users';
 
 @Component({
   selector: 'app-overview',
@@ -16,7 +17,7 @@ import {
   templateUrl: './overview.html',
   styleUrl: './overview.css',
 })
-export class Overview implements OnInit {
+export class Overview implements OnInit, OnDestroy {
   overviewData!: {
     budget: OverviewCards;
     totalCustomers: OverviewCards;
@@ -24,14 +25,15 @@ export class Overview implements OnInit {
     totalProfit: OverviewCards;
   };
   trafficSource!: TrafficSource;
-  latestProducts!: Array<LatestProducts>;
-  latestOrders!: Array<LatestOrders>;
+
+  latestOrders$!: Observable<LatestOrders[]>;
+  latestProducts$!: Observable<LatestProducts[]>;
 
   columns = [
     {
       columnDef: 'order',
       header: 'Order',
-      cell: (element: LatestOrders) => `${element.order}`,
+      cell: (element: LatestOrders) => `${element.id}`,
     },
     {
       columnDef: 'customer',
@@ -41,7 +43,7 @@ export class Overview implements OnInit {
     {
       columnDef: 'dateOrdered',
       header: 'Date',
-      cell: (element: LatestOrders) => `${element.dateOrdered}`,
+      cell: (element: LatestOrders) => `${element.orderDate}`,
     },
     {
       columnDef: 'status',
@@ -50,12 +52,16 @@ export class Overview implements OnInit {
     },
   ];
 
-  dataSource!: MatTableDataSource<LatestOrders>;
+  dataSource: MatTableDataSource<LatestOrders> = new MatTableDataSource<LatestOrders>([]);
   displayedColumns: Array<string> = [];
   headers: Array<string> = this.columns.map((column) => column.columnDef);
+  private subscription!: Subscription;
 
-  constructor(private readonly data: Data) {
-    this.dataSource = new MatTableDataSource<LatestOrders>(this.data.latestOrders);
+  constructor(
+    private readonly data: Data,
+    private readonly usersService: UsersService,
+  ) {
+    this.latestOrders$ = this.usersService.fetchOrders();
   }
 
   get budget() {
@@ -86,9 +92,17 @@ export class Overview implements OnInit {
       totalProfit: this.data.totalProfit,
     };
     this.trafficSource = this.data.trafficSource;
-    this.latestProducts = this.data.latestProducts;
-    this.latestOrders = this.data.latestOrders;
+
+    this.subscription = this.latestOrders$.subscribe((orders) => {
+      this.dataSource.data = orders.slice(0, 6);
+    });
+
+    this.latestProducts$ = this.usersService.fetchProducts();
 
     this.displayedColumns.push(...this.headers);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

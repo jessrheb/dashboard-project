@@ -75,12 +75,17 @@ html {
         list-item-label-text-color: #b3b9c6,
       )
     );
+
+    @include mat.list-overrides(
+      (
+        list-item-hover-label-text-color: #b3b9c6,
+      )
+    );
   }
 
   @include mat.list-overrides(
     (
-      active-indicator-color: white,
-      list-item-hover-label-text-color: #b3b9c6,
+      active-indicator-color: transparent,
       list-item-label-text-line-height: 28px,
       list-item-label-text-size: 0.875rem,
       list-item-label-text-weight: 500,
@@ -334,7 +339,7 @@ app-page-heading {
   width: 100%;
 
   & > h4.h4,
-  & > section.complex-heading > h4.h4 {
+  & > header.complex-heading > h4.h4 {
     color: #212636;
     display: block;
     font-size: 32px;

@@ -2,27 +2,28 @@
 
 <app-search-box [placeholder]="'Search integration'"></app-search-box>
 
-<div class="integrations-cards">
-    <mat-card appearance="outlined" class="integrations integration-card" *ngFor="let app of integrations$ | async">
+<section class="integrations-cards">
+    <mat-card appearance="outlined" class="integrations integration-card"
+        *ngFor="let application of integrations$ | async">
         <mat-card-header>
-            <img mat-card-avatar [src]="app.icon" alt="">
-            <mat-card-title>{{ app.name }}</mat-card-title>
+            <img mat-card-avatar [src]="application.icon" alt="">
+            <mat-card-title>{{ application.name }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            {{ app.description }}
+            {{ application.description }}
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-footer>
             <div class="info">
                 <mat-icon svgIcon="ph-light:clock" style="height: 16px; min-width: 16px;"></mat-icon>
-                <p>Updated {{ app.updatedAt | date:'mediumDate' }}</p>
+                <p>Updated {{ application.updatedAt | date:'mediumDate' }}</p>
             </div>
             <div class="info">
                 <mat-icon svgIcon="ph-light:download" style="height: 16px; min-width: 16px;"></mat-icon>
-                <p>{{ app.installs }} installs</p>
+                <p>{{ application.installs }} installs</p>
             </div>
         </mat-card-footer>
     </mat-card>
-</div>
+</section>
 
 <mat-paginator [length]="18" [pageSize]="6" [hidePageSize]="true"></mat-paginator>
