@@ -73,11 +73,6 @@ html {
     @include mat.list-overrides(
       (
         list-item-label-text-color: #b3b9c6,
-      )
-    );
-
-    @include mat.list-overrides(
-      (
         list-item-hover-label-text-color: #b3b9c6,
       )
     );
@@ -487,6 +482,10 @@ table[mat-table] {
   }
   & td[mat-cell] {
     padding: 16px;
+
+    &:last-child {
+      white-space: nowrap;
+    }
 
     & > div.complex-cell {
       align-items: center;

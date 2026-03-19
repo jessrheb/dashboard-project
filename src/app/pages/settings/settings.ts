@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { NotificationSettings } from '../../shared/data';
+import { NotificationSetting } from '../../shared/data';
 import { UsersService } from '../../shared/users';
 
 @Component({
@@ -11,7 +11,7 @@ import { UsersService } from '../../shared/users';
   styleUrl: './settings.css',
 })
 export class Settings implements OnInit {
-  notificationSettings$!: Observable<NotificationSettings>;
+  notificationSettings$!: Observable<NotificationSetting>;
 
   constructor(private readonly usersService: UsersService) {}
 

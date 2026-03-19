@@ -122,7 +122,7 @@
     <mat-divider></mat-divider>
     <mat-card-content *ngIf="latestProducts$ | async as latestProducts">
         <mat-list>
-            @for (product of latestProducts.slice(0, 5); track product) {
+            @for (product of latestProducts; track product) {
             <mat-list-item>
                 <img matListItemAvatar [src]="product.picture" alt="" />
                 <span matListItemTitle>{{ product.name }}</span>

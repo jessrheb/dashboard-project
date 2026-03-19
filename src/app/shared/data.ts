@@ -11,7 +11,7 @@ export interface UserInfo {
   phoneNumber: string;
 }
 
-export interface NotificationSettings {
+export interface NotificationSetting {
   id: number;
   createdAt: string;
   notifications: {
@@ -26,7 +26,7 @@ export interface NotificationSettings {
   };
 }
 
-export interface Applications {
+export interface Application {
   id: number;
   updatedAt: Date;
   name: string;
@@ -62,14 +62,14 @@ export interface Sales {
   lastYear: Array<number>;
 }
 
-export interface LatestOrders {
+export interface LatestOrder {
   id: string;
   customer: string;
   orderDate: Date;
   status: string;
 }
 
-export interface LatestProducts {
+export interface LatestProduct {
   id: string;
   name: string;
   picture: string;

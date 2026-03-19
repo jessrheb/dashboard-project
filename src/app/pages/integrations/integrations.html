@@ -2,9 +2,9 @@
 
 <app-search-box [placeholder]="'Search integration'"></app-search-box>
 
-<section class="integrations-cards">
-    <mat-card appearance="outlined" class="integrations integration-card"
-        *ngFor="let application of integrations$ | async">
+<section class="integrations-cards" *ngIf="integrations$ | async as integrations">
+    @for (application of integrations; track application) {
+    <mat-card appearance="outlined" class="integrations integration-card">
         <mat-card-header>
             <img mat-card-avatar [src]="application.icon" alt="">
             <mat-card-title>{{ application.name }}</mat-card-title>
@@ -15,15 +15,15 @@
         <mat-divider></mat-divider>
         <mat-card-footer>
             <div class="info">
-                <mat-icon svgIcon="ph-light:clock" style="height: 16px; min-width: 16px;"></mat-icon>
+                <mat-icon svgIcon="ph-light:clock"></mat-icon>
                 <p>Updated {{ application.updatedAt | date:'mediumDate' }}</p>
             </div>
             <div class="info">
-                <mat-icon svgIcon="ph-light:download" style="height: 16px; min-width: 16px;"></mat-icon>
+                <mat-icon svgIcon="ph-light:download"></mat-icon>
                 <p>{{ application.installs }} installs</p>
             </div>
         </mat-card-footer>
-    </mat-card>
+    </mat-card> }
 </section>
 
-<mat-paginator [length]="18" [pageSize]="6" [hidePageSize]="true"></mat-paginator>
+<mat-paginator [length]="totalApplications" [pageSize]="6" [hidePageSize]="true"></mat-paginator>

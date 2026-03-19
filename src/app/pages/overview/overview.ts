@@ -2,13 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
 
-import {
-  Data,
-  LatestOrders,
-  LatestProducts,
-  OverviewCards,
-  TrafficSource,
-} from '../../shared/data';
+import { Data, LatestOrder, LatestProduct, OverviewCards, TrafficSource } from '../../shared/data';
 import { UsersService } from '../../shared/users';
 
 @Component({
@@ -26,33 +20,33 @@ export class Overview implements OnInit, OnDestroy {
   };
   trafficSource!: TrafficSource;
 
-  latestOrders$!: Observable<LatestOrders[]>;
-  latestProducts$!: Observable<LatestProducts[]>;
+  latestOrders$!: Observable<LatestOrder[]>;
+  latestProducts$!: Observable<LatestProduct[]>;
 
   columns = [
     {
       columnDef: 'order',
       header: 'Order',
-      cell: (element: LatestOrders) => `${element.id}`,
+      cell: (element: LatestOrder) => `${element.id}`,
     },
     {
       columnDef: 'customer',
       header: 'Customer',
-      cell: (element: LatestOrders) => `${element.customer}`,
+      cell: (element: LatestOrder) => `${element.customer}`,
     },
     {
       columnDef: 'dateOrdered',
       header: 'Date',
-      cell: (element: LatestOrders) => `${element.orderDate}`,
+      cell: (element: LatestOrder) => `${element.orderDate}`,
     },
     {
       columnDef: 'status',
       header: 'Status',
-      cell: (element: LatestOrders) => `${element.status}`,
+      cell: (element: LatestOrder) => `${element.status}`,
     },
   ];
 
-  dataSource: MatTableDataSource<LatestOrders> = new MatTableDataSource<LatestOrders>([]);
+  dataSource: MatTableDataSource<LatestOrder> = new MatTableDataSource<LatestOrder>([]);
   displayedColumns: Array<string> = [];
   headers: Array<string> = this.columns.map((column) => column.columnDef);
   private subscription!: Subscription;
@@ -61,7 +55,7 @@ export class Overview implements OnInit, OnDestroy {
     private readonly data: Data,
     private readonly usersService: UsersService,
   ) {
-    this.latestOrders$ = this.usersService.fetchOrders();
+    this.latestOrders$ = this.usersService.fetchOrders(6);
   }
 
   get budget() {
@@ -94,10 +88,10 @@ export class Overview implements OnInit, OnDestroy {
     this.trafficSource = this.data.trafficSource;
 
     this.subscription = this.latestOrders$.subscribe((orders) => {
-      this.dataSource.data = orders.slice(0, 6);
+      this.dataSource.data = orders;
     });
 
-    this.latestProducts$ = this.usersService.fetchProducts();
+    this.latestProducts$ = this.usersService.fetchProducts(5);
 
     this.displayedColumns.push(...this.headers);
   }
