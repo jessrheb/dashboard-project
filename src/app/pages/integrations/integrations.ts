@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { forkJoin, map, Observable } from 'rxjs';
+import { forkJoin, map, Observable, Subject, takeUntil } from 'rxjs';
 
 import { Application } from '../../shared/data';
 import { UsersService } from '../../shared/users';
@@ -12,9 +12,11 @@ import { UsersService } from '../../shared/users';
   templateUrl: './integrations.html',
   styleUrl: './integrations.css',
 })
-export class Integrations implements OnInit, AfterViewInit {
-  userApplications!: number[];
+export class Integrations implements OnInit, OnDestroy, AfterViewInit {
+  private readonly destroy$ = new Subject<void>();
   integrations$!: Observable<Application[]>;
+
+  userApplications!: number[];
   dataSource: MatTableDataSource<Application> = new MatTableDataSource<Application>([]);
   totalApplications = 0;
 
@@ -32,6 +34,7 @@ export class Integrations implements OnInit, AfterViewInit {
             ids.includes(+integration.id),
           );
         }),
+        takeUntil(this.destroy$),
       )
       .subscribe();
     this.integrations$ = this.dataSource.connect();
@@ -39,5 +42,10 @@ export class Integrations implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

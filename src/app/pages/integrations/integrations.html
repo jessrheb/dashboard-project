@@ -2,9 +2,10 @@
 
 <app-search-box [placeholder]="'Search integration'"></app-search-box>
 
-<section class="integrations-cards" *ngIf="integrations$ | async as integrations">
+<section class="integrations-cards">
+    @if (integrations$ | async; as integrations) {
     @for (application of integrations; track application) {
-    <mat-card appearance="outlined" class="integrations integration-card">
+    <mat-card class="integrations integration-card">
         <mat-card-header>
             <img mat-card-avatar [src]="application.icon" alt="">
             <mat-card-title>{{ application.name }}</mat-card-title>
@@ -23,7 +24,9 @@
                 <p>{{ application.installs }} installs</p>
             </div>
         </mat-card-footer>
-    </mat-card> }
+    </mat-card>
+    }
+    }
 </section>
 
 <mat-paginator [length]="totalApplications" [pageSize]="6" [hidePageSize]="true"></mat-paginator>

@@ -1,5 +1,6 @@
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
+import { provideHttpClient } from '@angular/common/http';
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,23 +8,23 @@ import { RouterOutlet } from '@angular/router';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgxPhosphorIconsModule } from 'ngx-phosphor-icons';
 
+import { MaterialModule } from '../material-module';
 import { App } from './app';
 import { AppRoutingModule } from './app-routing-module';
 import { Header } from './components/header/header';
 import { Menu } from './components/menu/menu';
+import { PageHeading } from './components/page-heading/page-heading';
+import { SearchBox } from './components/search-box/search-box';
 import { Sidebar } from './components/sidebar/sidebar';
-import { Data } from './shared/data';
 import { Account } from './pages/account/account';
 import { Customers } from './pages/customers/customers';
 import { Integrations } from './pages/integrations/integrations';
-import { MaterialModule } from '../material-module';
+import { BarChart } from './pages/overview/charts/bar-chart/bar-chart';
+import { DonutChart } from './pages/overview/charts/donut-chart/donut-chart';
 import { Overview } from './pages/overview/overview';
 import { Settings } from './pages/settings/settings';
-import { SearchBox } from './components/search-box/search-box';
-import { PageHeading } from './components/page-heading/page-heading';
-import { BarChart } from './shared/charts/bar-chart/bar-chart';
-import { DonutChart } from './shared/charts/donut-chart/donut-chart';
-import { provideHttpClient } from '@angular/common/http';
+import { Data } from './shared/data';
+import { MAT_CARD_CONFIG } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,11 @@ import { provideHttpClient } from '@angular/common/http';
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
     Data,
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: 'dynamic' } },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
+    },
+    { provide: MAT_CARD_CONFIG, useValue: { appearance: 'outlined' } },
   ],
   bootstrap: [App],
 })

@@ -19,6 +19,7 @@ export class Account implements OnInit {
   loggedAccount$!: Observable<UserInfo>;
 
   states: Array<string> = [];
+  selectedValue!: string;
 
   constructor(
     private readonly data: Data,

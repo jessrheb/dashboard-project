@@ -1,6 +1,6 @@
 <app-page-heading [pageTitle]="'Settings'"></app-page-heading>
 
-<mat-card appearance="outlined" class="settings">
+<mat-card class="settings">
     <mat-card-header class="settings">
         <mat-card-title-group>
             <mat-card-title>Notifications</mat-card-title>
@@ -8,7 +8,8 @@
         </mat-card-title-group>
     </mat-card-header>
     <mat-divider></mat-divider>
-    <mat-card-content *ngIf="notificationSettings$ | async as notificationSettings" class="settings checkboxes">
+    @if (notificationSettings$ | async; as notificationSettings) {
+    <mat-card-content class="settings checkboxes">
         <section class="checkboxes">
             <h5>Email</h5>
             <mat-checkbox [checked]="notificationSettings.notifications.email.productUpdates">Product
@@ -23,13 +24,14 @@
                 updates</mat-checkbox>
         </section>
     </mat-card-content>
+    }
     <mat-divider></mat-divider>
     <mat-card-actions>
-        <button matButton="filled">Save changes</button>
+        <button matButton="filled" type="button">Save changes</button>
     </mat-card-actions>
 </mat-card>
 
-<mat-card appearance="outlined" class="settings">
+<mat-card class="settings">
     <mat-card-header class="settings">
         <mat-card-title-group>
             <mat-card-title>Password</mat-card-title>
@@ -39,16 +41,16 @@
     <mat-divider></mat-divider>
     <mat-card-content class="settings password">
         <form class="password">
-            <mat-form-field appearance="outline">
+            <mat-form-field>
                 <input matInput type="password" placeholder="Password">
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field>
                 <input matInput type="password" placeholder="Confirm password">
             </mat-form-field>
         </form>
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions>
-        <button matButton="filled">Update</button>
+        <button matButton="filled" type="button">Update</button>
     </mat-card-actions>
 </mat-card>

@@ -259,6 +259,12 @@ body {
   margin: 0;
 }
 
+@media (min-width: 1440px) {
+  main {
+    max-width: 1440px;
+  }
+}
+
 @media (min-width: 1200px) {
   app-overview {
     & > mat-card.overview-card:nth-child(-n + 4) {
@@ -292,12 +298,6 @@ body {
       100% * (6 / var(--grid-columns)) - (var(--grid-columns) - 6) *
         (var(--grid-column-spacing) / var(--grid-columns))
     );
-  }
-}
-
-@media (min-width: 1440px) {
-  main {
-    max-width: 1440px;
   }
 }
 
@@ -393,16 +393,21 @@ button[matButton].overview-actions {
 }
 
 button[matButton].overview-actions {
+  display: inline-flex;
+  flex-direction: row-reverse;
+
   @include mat.button-overrides(
     (
       text-container-height: 36.75px,
+      text-icon-spacing: -2px,
+      text-icon-offset: var(--mat-header-spacing),
       text-with-icon-horizontal-padding: 12px,
       text-label-text-size: 0.8125rem,
     )
   );
 }
 
-div.integrations-cards > mat-card[appearance='outlined'].integrations.integration-card {
+div.integrations-cards > mat-card.integrations.integration-card {
   @include mat.card-overrides(
     (
       title-text-size: 1.5rem,
@@ -430,17 +435,17 @@ app-customers {
   }
 }
 
-mat-card[appearance='outlined'] > mat-card-header {
-  padding: 32px 24px 16px;
+mat-card > mat-card-header {
+  padding: 32px 24px 16px !important;
 
   & > mat-card-title-group {
     align-items: center;
   }
 }
 
-mat-card[appearance='outlined'] > mat-card-content:not(> mat-list),
-mat-card[appearance='outlined'] > mat-card-content:not(> table) {
-  padding: 32px 24px;
+mat-card > mat-card-content:not(> mat-list),
+mat-card > mat-card-content:not(> table) {
+  padding: 32px 24px !important;
 }
 
 mat-card.overview > mat-card-content:has(> mat-list),

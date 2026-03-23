@@ -1,6 +1,6 @@
-<mat-card appearance="outlined" class="overview overview-card">
+<mat-card class="overview overview-card">
     <mat-card-content>
-        <div class="overview-icon" style="background-color: #635bff;">
+        <div class="overview-icon">
             <mat-icon svgIcon="ph-light:currency-dollar"></mat-icon>
         </div>
         <div class="title-group">
@@ -17,9 +17,9 @@
     </mat-card-footer>
 </mat-card>
 
-<mat-card appearance="outlined" class="overview overview-card">
+<mat-card class="overview overview-card">
     <mat-card-content>
-        <div class="overview-icon" style="background-color: #15b79f;">
+        <div class="overview-icon">
             <mat-icon svgIcon="ph-light:users"></mat-icon>
         </div>
         <div class="title-group">
@@ -36,9 +36,9 @@
     </mat-card-footer>
 </mat-card>
 
-<mat-card appearance="outlined" class="overview overview-card">
+<mat-card class="overview overview-card">
     <mat-card-content>
-        <div class="overview-icon" style="background-color: #fb9c0c;">
+        <div class="overview-icon">
             <mat-icon svgIcon="ph-light:list-bullets"></mat-icon>
         </div>
         <div class="title-group">
@@ -51,9 +51,9 @@
     </mat-card-footer>
 </mat-card>
 
-<mat-card appearance="outlined" class="overview overview-card">
+<mat-card class="overview overview-card">
     <mat-card-content>
-        <div class="overview-icon" style="background-color: #635bff;">
+        <div class="overview-icon">
             <mat-icon svgIcon="ph-light:receipt"></mat-icon>
         </div>
         <div class="title-group">
@@ -63,7 +63,7 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card appearance="outlined" class="overview">
+<mat-card class="overview">
     <mat-card-header>
         <mat-card-title-group>
             <mat-card-title>Sales</mat-card-title>
@@ -85,7 +85,7 @@
     </mat-card-actions>
 </mat-card>
 
-<mat-card appearance="outlined" class="overview">
+<mat-card class="overview">
     <mat-card-header>
         <mat-card-title-group>
             <mat-card-title>Traffic source</mat-card-title>
@@ -113,14 +113,15 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card appearance="outlined" class="overview">
+<mat-card class="overview">
     <mat-card-header>
         <mat-card-title-group>
             <mat-card-title>Latest products</mat-card-title>
         </mat-card-title-group>
     </mat-card-header>
     <mat-divider></mat-divider>
-    <mat-card-content *ngIf="latestProducts$ | async as latestProducts">
+    <mat-card-content>
+        @if (latestProducts$ | async; as latestProducts) {
         <mat-list>
             @for (product of latestProducts; track product) {
             <mat-list-item>
@@ -128,13 +129,15 @@
                 <span matListItemTitle>{{ product.name }}</span>
                 <span matListItemLine>{{ 'Updated' }} {{ product.updatedAt| date: 'mediumDate' }}</span>
                 <div matListItemMeta>
-                    <button matIconButton>
+                    <button matIconButton type="button">
                         <mat-icon svgIcon="ph-light:dots-three-vertical"></mat-icon>
                     </button>
                 </div>
             </mat-list-item>
-            <mat-divider></mat-divider>}
+            <mat-divider></mat-divider>
+            }
         </mat-list>
+        }
     </mat-card-content>
     <mat-card-actions>
         <button matButton type="button" class="overview-actions">
@@ -144,7 +147,7 @@
     </mat-card-actions>
 </mat-card>
 
-<mat-card appearance="outlined" class="overview">
+<mat-card class="overview">
     <mat-card-header>
         <mat-card-title-group>
             <mat-card-title>Latest orders</mat-card-title>

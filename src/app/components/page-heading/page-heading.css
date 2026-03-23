@@ -2,12 +2,8 @@ header.complex-heading {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  & > button[matButton='filled'] > mat-icon {
-    height: 20px;
-    width: 20px;
-  }
 }
+
 section.complex-buttons {
   display: flex;
   flex-direction: row;

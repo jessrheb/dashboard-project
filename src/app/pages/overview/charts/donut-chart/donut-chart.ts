@@ -11,7 +11,7 @@ import {
   ChartComponent,
 } from 'ng-apexcharts';
 
-import { Data } from '../../data';
+import { Data } from '../../../../shared/data';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
