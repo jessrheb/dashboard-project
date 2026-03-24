@@ -28,7 +28,7 @@ mat-card.account {
   height: fit-content;
 
   & mat-card-header.info {
-    padding: 32px 0 calc(var(--mat-header-spacing) * 2) 0;
+    padding: 32px 0 calc(var(--mat-standard-spacing) * 2) 0;
 
     & img[mat-card-avatar][mat-card-sm-image] {
       border-top-left-radius: 50%;
@@ -39,7 +39,7 @@ mat-card.account {
   & mat-card-content.info {
     display: flex;
     flex-direction: column;
-    gap: var(--mat-header-spacing);
+    gap: var(--mat-standard-spacing);
     padding-bottom: 32px;
     text-align: center;
 
@@ -61,7 +61,7 @@ mat-card.account {
 
     & > form {
       display: grid;
-      gap: calc(var(--mat-header-spacing) * 3);
+      gap: calc(var(--mat-standard-spacing) * 3);
       grid-template-columns: repeat(2, auto);
 
       & > mat-form-field {

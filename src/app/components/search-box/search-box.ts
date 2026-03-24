@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './search-box.css',
 })
 export class SearchBox {
-  @Input() placeholder!: string;
+  @Input() placeholder: string = '';
 }

@@ -77,6 +77,8 @@ export interface LatestProduct {
 }
 
 export class Data {
+  id: number = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+
   states = [
     'Alabama',
     'Alaska',

@@ -15,23 +15,23 @@ import {
   providedIn: 'root',
 })
 export class UsersService {
-  private readonly id: number = Math.floor(Math.random() * (5 - 1 + 1) + 1);
   private readonly http = inject(HttpClient);
   private readonly apiUrl = 'http://localhost:9000';
 
-  fetchLoggedUser() {
-    return this.http.get<UserInfo>(`${this.apiUrl}/users/${this.id}`);
+  fetchLoggedUser(id: number) {
+    return this.http.get<UserInfo>(`${this.apiUrl}/users/${id}`);
   }
 
-  fetchNotificationSettings() {
-    return this.http.get<NotificationSetting>(`${this.apiUrl}/users/${this.id}/settings`);
+  fetchNotificationSettings(id: number) {
+    return this.http.get<NotificationSetting>(`${this.apiUrl}/users/${id}/settings`);
   }
 
-  fetchIntegrations(): [Observable<number[]>, Observable<Application[]>] {
-    return [
-      this.http.get<number[]>(`${this.apiUrl}/users/${this.id}/integrations`),
-      this.http.get<Application[]>(`${this.apiUrl}/integrations`),
-    ];
+  fetchIntegrations(): Observable<Application[]> {
+    return this.http.get<Application[]>(`${this.apiUrl}/integrations`);
+  }
+
+  fetchIntegrationsByUser(id: number): Observable<number[]> {
+    return this.http.get<number[]>(`${this.apiUrl}/users/${id}/integrations`);
   }
 
   fetchCustomers() {

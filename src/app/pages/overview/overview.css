@@ -1,7 +1,7 @@
 mat-card.overview-card {
   display: flex;
   flex-direction: column;
-  gap: calc(3 * var(--mat-header-spacing));
+  gap: calc(3 * var(--mat-standard-spacing));
   padding: 32px 24px;
 
   &:first-child div.overview-icon,
@@ -41,7 +41,7 @@ mat-card.overview-card {
     & div.title-group {
       display: flex;
       flex-direction: column-reverse;
-      gap: var(--mat-header-spacing);
+      gap: var(--mat-standard-spacing);
 
       & mat-card-title {
         color: #212636;
@@ -63,14 +63,14 @@ mat-card.overview-card {
     align-items: center;
     display: flex;
     flex-direction: row;
-    gap: calc(2 * var(--mat-header-spacing));
+    gap: calc(2 * var(--mat-standard-spacing));
     padding: 0;
 
     & div.stats {
       align-items: center;
       display: flex;
       flex-direction: row;
-      gap: calc(0.5 * var(--mat-header-spacing));
+      gap: calc(0.5 * var(--mat-standard-spacing));
 
       &.positive {
         color: #15b79f;
@@ -100,7 +100,7 @@ mat-card.overview-card {
 mat-card-content > div.legend {
   align-items: center;
   display: flex;
-  gap: calc(2 * var(--mat-header-spacing));
+  gap: calc(2 * var(--mat-standard-spacing));
   justify-content: center;
 
   & > mat-card-title-group.legend-item {
@@ -109,10 +109,10 @@ mat-card-content > div.legend {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    gap: var(--mat-header-spacing);
+    gap: var(--mat-standard-spacing);
 
     & mat-card-title {
-      margin-bottom: var(--mat-header-spacing);
+      margin-bottom: var(--mat-standard-spacing);
     }
   }
 }

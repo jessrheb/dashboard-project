@@ -13,9 +13,9 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrl: './customers.css',
 })
 export class Customers implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  customers$!: Observable<CustomersInfo[]>;
+  customers$: Observable<CustomersInfo[]> | null = null;
 
   columns = [
     {
@@ -58,7 +58,7 @@ export class Customers implements OnInit, OnDestroy, AfterViewInit {
 
   dataSource: MatTableDataSource<CustomersInfo> = new MatTableDataSource<CustomersInfo>([]);
   selection = new SelectionModel<CustomersInfo>(true, []);
-  private subscription!: Subscription;
+  private subscription: Subscription | null = null;
 
   displayedColumns: Array<string> = ['select'];
   headers: Array<string> = this.columns
@@ -80,7 +80,6 @@ export class Customers implements OnInit, OnDestroy, AfterViewInit {
       this.selection.clear();
       return;
     }
-
     this.selection.select(...this.dataSource.data);
   }
 
@@ -92,6 +91,7 @@ export class Customers implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    if (!this.customers$) return;
     this.subscription = this.customers$.subscribe((customers) => {
       this.dataSource.data = customers;
     });

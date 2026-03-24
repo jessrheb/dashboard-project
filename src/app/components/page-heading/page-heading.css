@@ -7,5 +7,5 @@ header.complex-heading {
 section.complex-buttons {
   display: flex;
   flex-direction: row;
-  gap: var(--mat-header-spacing);
+  gap: var(--mat-standard-spacing);
 }

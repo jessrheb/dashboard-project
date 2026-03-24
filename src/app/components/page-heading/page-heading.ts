@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './page-heading.css',
 })
 export class PageHeading {
-  @Input() pageTitle!: string;
+  @Input() pageTitle: string = '';
   @Input() simpleHeading: boolean = true;
 }

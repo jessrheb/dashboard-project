@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { forkJoin, map, Observable, Subject, takeUntil } from 'rxjs';
 
-import { Application } from '../../shared/data';
+import { Application, Data } from '../../shared/data';
 import { UsersService } from '../../shared/users';
 
 @Component({
@@ -14,22 +14,29 @@ import { UsersService } from '../../shared/users';
 })
 export class Integrations implements OnInit, OnDestroy, AfterViewInit {
   private readonly destroy$ = new Subject<void>();
-  integrations$!: Observable<Application[]>;
+  integrations$: Observable<Application[]> | null = null;
 
-  userApplications!: number[];
+  userId: number = 0;
+  userApplications: Array<number> = [];
   dataSource: MatTableDataSource<Application> = new MatTableDataSource<Application>([]);
-  totalApplications = 0;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly data: Data,
+    private readonly usersService: UsersService,
+  ) {
+    this.userId = this.data.id;
+  }
 
   ngOnInit(): void {
-    forkJoin(this.usersService.fetchIntegrations())
+    forkJoin([
+      this.usersService.fetchIntegrations(),
+      this.usersService.fetchIntegrationsByUser(this.userId),
+    ])
       .pipe(
-        map(([ids, integrations]) => {
+        map(([integrations, ids]) => {
           this.userApplications = ids;
-          this.totalApplications = this.userApplications.length;
           this.dataSource.data = integrations.filter((integration) =>
             ids.includes(+integration.id),
           );

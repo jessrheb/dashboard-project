@@ -25,7 +25,7 @@ hgroup {
 }
 button.menu-button[mat-menu-item] {
   align-items: center;
-  border-radius: var(--mat-header-spacing);
+  border-radius: var(--mat-standard-spacing);
   display: flex;
   justify-content: flex-start;
   margin: 0 8px;

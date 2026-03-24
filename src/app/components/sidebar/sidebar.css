@@ -5,7 +5,7 @@ mat-toolbar.sidebar {
     background-color: var(--mat-sidenav-container-background-color);
     color: #ffffff;
     display: flex;
-    gap: calc(2 * var(--mat-header-spacing));
+    gap: calc(2 * var(--mat-standard-spacing));
     height: 64px;
 
     place-content: center;
@@ -37,13 +37,13 @@ nav {
   & mat-nav-list {
     display: flex;
     flex-direction: column;
-    gap: var(--mat-header-spacing);
+    gap: var(--mat-standard-spacing);
     list-style: none;
     margin: 0;
     padding: 0;
 
     & a[mat-list-item] {
-      border-radius: var(--mat-header-spacing);
+      border-radius: var(--mat-standard-spacing);
 
       &.active {
         background-color: #635bff;

@@ -14,20 +14,23 @@ import { UsersService } from '../../shared/users';
 })
 export class Account implements OnInit {
   floatLabel = new FormControl('auto' as FloatLabelType);
-  subscriptSizing!: SubscriptSizing;
+  subscriptSizing: SubscriptSizing | null = null;
 
-  loggedAccount$!: Observable<UserInfo>;
+  userId: number = 0;
+  loggedAccount$: Observable<UserInfo> | null = null;
 
   states: Array<string> = [];
-  selectedValue!: string;
+  selectedValue: string = '';
 
   constructor(
     private readonly data: Data,
     private readonly usersService: UsersService,
-  ) {}
+  ) {
+    this.userId = this.data.id;
+  }
 
   ngOnInit(): void {
-    this.loggedAccount$ = this.usersService.fetchLoggedUser();
+    this.loggedAccount$ = this.usersService.fetchLoggedUser(this.userId);
     this.states = this.data.states;
   }
 }

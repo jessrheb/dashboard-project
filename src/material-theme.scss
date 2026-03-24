@@ -3,12 +3,12 @@
 
 :root {
   --box-shadow: 0 5px 22px 0 rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.06);
-  --mat-header-spacing: 8px;
+  --mat-standard-spacing: 8px;
   --mat-sidenav-container-background-color: #121621;
   --mat-sidenav-container-text-color: #b3b9c6;
   --mat-sidenav-container-width: 280px;
   --grid-columns: 12;
-  --grid-column-spacing: calc(3 * var(--mat-header-spacing));
+  --grid-column-spacing: calc(3 * var(--mat-standard-spacing));
 }
 
 html {
@@ -306,7 +306,7 @@ main {
   height: fit-content;
   margin-left: auto;
   margin-right: auto;
-  padding: 64px calc(3 * var(--mat-header-spacing));
+  padding: 64px calc(3 * var(--mat-standard-spacing));
   width: 100%;
 }
 
@@ -322,14 +322,14 @@ app-settings {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: calc(var(--mat-header-spacing) * 3);
+  gap: calc(var(--mat-standard-spacing) * 3);
   min-width: 0;
 }
 
 app-page-heading {
   display: flex;
   flex-direction: column;
-  gap: var(--mat-header-spacing);
+  gap: var(--mat-standard-spacing);
   min-width: 0;
   width: 100%;
 
@@ -400,14 +400,14 @@ button[matButton].overview-actions {
     (
       text-container-height: 36.75px,
       text-icon-spacing: -2px,
-      text-icon-offset: var(--mat-header-spacing),
+      text-icon-offset: var(--mat-standard-spacing),
       text-with-icon-horizontal-padding: 12px,
       text-label-text-size: 0.8125rem,
     )
   );
 }
 
-div.integrations-cards > mat-card.integrations.integration-card {
+section.integrations-cards > mat-card.integrations.integration-card {
   @include mat.card-overrides(
     (
       title-text-size: 1.5rem,
@@ -496,7 +496,7 @@ table[mat-table] {
       align-items: center;
       display: flex;
       font-weight: 500;
-      gap: calc(2 * var(--mat-header-spacing));
+      gap: calc(2 * var(--mat-standard-spacing));
 
       & > img[mat-card-avatar] {
         margin-bottom: 0;
