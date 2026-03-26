@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import {
   Application,
@@ -8,6 +7,8 @@ import {
   LatestOrder,
   LatestProduct,
   NotificationSetting,
+  OverviewInfo,
+  SalesInfo,
   UserInfo,
 } from './data';
 
@@ -26,16 +27,24 @@ export class UsersService {
     return this.http.get<NotificationSetting>(`${this.apiUrl}/users/${id}/settings`);
   }
 
-  fetchIntegrations(): Observable<Application[]> {
+  fetchIntegrations() {
     return this.http.get<Application[]>(`${this.apiUrl}/integrations`);
   }
 
-  fetchIntegrationsByUser(id: number): Observable<number[]> {
+  fetchIntegrationsByUser(id: number) {
     return this.http.get<number[]>(`${this.apiUrl}/users/${id}/integrations`);
   }
 
   fetchCustomers() {
     return this.http.get<CustomersInfo[]>(`${this.apiUrl}/customers`);
+  }
+
+  fetchOverviewInfo() {
+    return this.http.get<OverviewInfo>(`${this.apiUrl}/overview`);
+  }
+
+  fetchSalesInfo() {
+    return this.http.get<SalesInfo>(`${this.apiUrl}/sales`);
   }
 
   fetchOrders(limit: number) {

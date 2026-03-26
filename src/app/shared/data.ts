@@ -46,19 +46,26 @@ export interface CustomersInfo {
   phone: string;
 }
 
-export interface OverviewCards {
-  value: number;
-  percentage: number;
+export interface OverviewInfo {
+  budget: {
+    current: number;
+    lastMonth: number;
+  };
+  totalCustomers: {
+    current: number;
+    lastMonth: number;
+  };
+  taskProgress: number;
+  totalProfit: number;
+  trafficSource: {
+    desktop: number;
+    tablet: number;
+    phone: number;
+  };
 }
 
-export interface TrafficSource {
-  desktop: number;
-  tablet: number;
-  phone: number;
-}
-
-export interface Sales {
-  thisYear: Array<number>;
+export interface SalesInfo {
+  currentYear: Array<number>;
   lastYear: Array<number>;
 }
 
@@ -131,23 +138,4 @@ export class Data {
     'Wisconsin',
     'Wyoming',
   ];
-
-  budget: OverviewCards = { value: 24000, percentage: 12 };
-
-  totalCustomers: OverviewCards = { value: 1600, percentage: 16 };
-
-  taskProgress: OverviewCards = { value: 0, percentage: 75.5 };
-
-  totalProfit: OverviewCards = { value: 15000, percentage: 0 };
-
-  sales: Sales = {
-    thisYear: [18000, 16000, 5000, 8000, 3000, 14000, 14000, 16000, 17000, 19000, 18000, 20000],
-    lastYear: [12000, 11000, 4000, 6000, 2000, 9000, 9000, 10000, 11000, 12000, 13000, 13000],
-  };
-
-  trafficSource: TrafficSource = {
-    desktop: 63,
-    tablet: 15,
-    phone: 22,
-  };
 }

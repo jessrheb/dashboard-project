@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -13,7 +13,7 @@ import {
   ChartComponent,
 } from 'ng-apexcharts';
 
-import { Data } from '../../../../shared/data';
+import { SalesInfo } from '../../../../shared/data';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -34,22 +34,24 @@ export type ChartOptions = {
   templateUrl: './bar-chart.html',
   styleUrl: './bar-chart.css',
 })
-export class BarChart {
-  @Input() valueFormatter!: any;
-  @ViewChild('chart') chart!: ChartComponent;
+export class BarChart implements OnChanges {
+  @ViewChild('chart') chart: ChartComponent | null = null;
   public chartOptions: ChartOptions;
 
-  constructor(private readonly data: Data) {
+  @Input() valueFormatter: any;
+  @Input() salesInfo: SalesInfo = { currentYear: [], lastYear: [] };
+
+  constructor() {
     this.chartOptions = {
       series: [
         {
           name: 'This year',
-          data: this.data.sales.thisYear,
+          data: [],
           zIndex: 0,
         },
         {
           name: 'Last year',
-          data: this.data.sales.lastYear,
+          data: [],
           zIndex: 1,
         },
       ],
@@ -117,5 +119,10 @@ export class BarChart {
         strokeDashArray: 2,
       },
     };
+  }
+
+  ngOnChanges(): void {
+    this.chartOptions.series[0].data = this.salesInfo.currentYear;
+    this.chartOptions.series[1].data = this.salesInfo.lastYear;
   }
 }

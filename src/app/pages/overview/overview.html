@@ -4,14 +4,18 @@
             <mat-icon svgIcon="ph-light:currency-dollar"></mat-icon>
         </div>
         <div class="title-group">
-            <mat-card-title>{{ '$' + valueFormatter(budget.value) }}</mat-card-title>
+            <mat-card-title>{{ '$' + valueFormatter(budget.current) }}</mat-card-title>
             <mat-card-subtitle>Budget</mat-card-subtitle>
         </div>
     </mat-card-content>
     <mat-card-footer>
-        <div class="stats positive">
+        <div [class]="percentChange(budget.current, budget.lastMonth) > 0 ? 'stats positive' : 'stats negative'">
+            @if (percentChange(budget.current, budget.lastMonth) > 0) {
             <mat-icon svgIcon="ph-light:arrow-up"></mat-icon>
-            <p>{{ budget.percentage + '%' }}</p>
+            } @else {
+            <mat-icon svgIcon="ph-light:arrow-down"></mat-icon>
+            }
+            <p>{{ percentChange(budget.current, budget.lastMonth) + '%' }}</p>
         </div>
         <span>Since last month</span>
     </mat-card-footer>
@@ -23,14 +27,19 @@
             <mat-icon svgIcon="ph-light:users"></mat-icon>
         </div>
         <div class="title-group">
-            <mat-card-title>{{ valueFormatter(totalCustomers.value) }}</mat-card-title>
+            <mat-card-title>{{ valueFormatter(totalCustomers.current) }}</mat-card-title>
             <mat-card-subtitle>Total Customers</mat-card-subtitle>
         </div>
     </mat-card-content>
     <mat-card-footer>
-        <div class="stats negative">
+        <div
+            [class]="percentChange(totalCustomers.current, totalCustomers.lastMonth) > 0 ? 'stats positive' : 'stats negative'">
+            @if (percentChange(totalCustomers.current, totalCustomers.lastMonth) > 0) {
+            <mat-icon svgIcon="ph-light:arrow-up"></mat-icon>
+            } @else {
             <mat-icon svgIcon="ph-light:arrow-down"></mat-icon>
-            <p>{{ totalCustomers.percentage + '%'}}</p>
+            }
+            <p>{{ percentChange(totalCustomers.current, totalCustomers.lastMonth) + '%'}}</p>
         </div>
         <span>Since last month</span>
     </mat-card-footer>
@@ -42,12 +51,12 @@
             <mat-icon svgIcon="ph-light:list-bullets"></mat-icon>
         </div>
         <div class="title-group">
-            <mat-card-title>{{ taskProgress.percentage + '%' }}</mat-card-title>
+            <mat-card-title>{{ taskProgress + '%' }}</mat-card-title>
             <mat-card-subtitle>Task Progress</mat-card-subtitle>
         </div>
     </mat-card-content>
     <mat-card-footer>
-        <mat-progress-bar mode="determinate" [value]="taskProgress.percentage"></mat-progress-bar>
+        <mat-progress-bar mode="determinate" [value]="taskProgress"></mat-progress-bar>
     </mat-card-footer>
 </mat-card>
 
@@ -57,7 +66,7 @@
             <mat-icon svgIcon="ph-light:receipt"></mat-icon>
         </div>
         <div class="title-group">
-            <mat-card-title>{{ '$' + valueFormatter(totalProfit.value) }}</mat-card-title>
+            <mat-card-title>{{ '$' + valueFormatter(totalProfit) }}</mat-card-title>
             <mat-card-subtitle>Total Profit</mat-card-subtitle>
         </div>
     </mat-card-content>
@@ -74,7 +83,7 @@
         </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-        <app-bar-chart [valueFormatter]="valueFormatter"></app-bar-chart>
+        <app-bar-chart [valueFormatter]="valueFormatter" [salesInfo]="salesInfo"></app-bar-chart>
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions>
@@ -92,17 +101,17 @@
         </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-        <app-donut-chart></app-donut-chart>
+        <app-donut-chart [trafficSource]="trafficSource"></app-donut-chart>
         <div class="legend">
             <mat-card-title-group class="legend-item">
                 <mat-icon svgIcon="ph-light:desktop"></mat-icon>
                 <mat-card-title>Desktop</mat-card-title>
-                <mat-card-subtitle>{{ trafficSource.desktop }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ trafficSource.desktop + '%' }}</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-title-group class="legend-item">
                 <mat-icon svgIcon="ph-light:device-tablet"></mat-icon>
                 <mat-card-title>Tablet</mat-card-title>
-                <mat-card-subtitle>{{ trafficSource.desktop + '%' }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ trafficSource.tablet + '%' }}</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-title-group class="legend-item">
                 <mat-icon svgIcon="ph-light:phone"></mat-icon>

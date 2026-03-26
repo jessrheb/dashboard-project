@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable, Subscription } from 'rxjs';
+import { map, Observable, Subject, takeUntil } from 'rxjs';
 
-import { Data, LatestOrder, LatestProduct, OverviewCards, TrafficSource } from '../../shared/data';
+import { LatestOrder, LatestProduct, OverviewInfo, SalesInfo } from '../../shared/data';
 import { UsersService } from '../../shared/users';
 
 @Component({
@@ -12,16 +12,32 @@ import { UsersService } from '../../shared/users';
   styleUrl: './overview.css',
 })
 export class Overview implements OnInit, OnDestroy {
-  overviewData!: {
-    budget: OverviewCards;
-    totalCustomers: OverviewCards;
-    taskProgress: OverviewCards;
-    totalProfit: OverviewCards;
-  };
-  trafficSource!: TrafficSource;
+  private readonly destroy$ = new Subject<void>();
+  latestOrders$: Observable<LatestOrder[]> | null = null;
+  latestProducts$: Observable<LatestProduct[]> | null = null;
 
-  latestOrders$!: Observable<LatestOrder[]>;
-  latestProducts$!: Observable<LatestProduct[]>;
+  overviewInfo: OverviewInfo = {
+    budget: {
+      current: 0,
+      lastMonth: 0,
+    },
+    totalCustomers: {
+      current: 0,
+      lastMonth: 0,
+    },
+    taskProgress: 0,
+    totalProfit: 0,
+    trafficSource: {
+      desktop: 0,
+      tablet: 0,
+      phone: 0,
+    },
+  };
+
+  salesInfo: SalesInfo = {
+    currentYear: [],
+    lastYear: [],
+  };
 
   columns = [
     {
@@ -49,47 +65,88 @@ export class Overview implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<LatestOrder> = new MatTableDataSource<LatestOrder>([]);
   displayedColumns: Array<string> = [];
   headers: Array<string> = this.columns.map((column) => column.columnDef);
-  private subscription!: Subscription;
 
-  constructor(
-    private readonly data: Data,
-    private readonly usersService: UsersService,
-  ) {
-    this.latestOrders$ = this.usersService.fetchOrders(6);
-  }
+  constructor(private readonly usersService: UsersService) {}
 
   get budget() {
-    return this.overviewData.budget;
+    return this.overviewInfo.budget;
   }
 
   get totalCustomers() {
-    return this.overviewData.totalCustomers;
+    return this.overviewInfo.totalCustomers;
   }
 
   get taskProgress() {
-    return this.overviewData.taskProgress;
+    return this.overviewInfo.taskProgress;
   }
 
   get totalProfit() {
-    return this.overviewData.totalProfit;
+    return this.overviewInfo.totalProfit;
+  }
+
+  get trafficSource() {
+    return {
+      desktop: this.overviewInfo.trafficSource.desktop,
+      tablet: this.overviewInfo.trafficSource.tablet,
+      phone: this.overviewInfo.trafficSource.phone,
+    };
   }
 
   valueFormatter(value: number) {
     return value > 999 ? Math.round(value / 100) / 10 + 'k' : value.toString();
   }
 
-  ngOnInit(): void {
-    this.overviewData = {
-      budget: this.data.budget,
-      totalCustomers: this.data.totalCustomers,
-      taskProgress: this.data.taskProgress,
-      totalProfit: this.data.totalProfit,
-    };
-    this.trafficSource = this.data.trafficSource;
+  percentChange(a: number, b: number) {
+    let percent;
+    if (b !== 0) {
+      if (a !== 0) {
+        percent = ((b - a) / a) * 100;
+      } else {
+        percent = b * 100;
+      }
+    } else {
+      percent = -a * 100;
+    }
+    return Math.floor(percent);
+  }
 
-    this.subscription = this.latestOrders$.subscribe((orders) => {
-      this.dataSource.data = orders;
-    });
+  ngOnInit(): void {
+    this.usersService
+      .fetchOverviewInfo()
+      .pipe(
+        map((overview: OverviewInfo) => {
+          this.overviewInfo = overview;
+          this.overviewInfo.taskProgress = Math.floor(this.overviewInfo.taskProgress);
+          this.overviewInfo.trafficSource = {
+            desktop: Math.floor(this.overviewInfo.trafficSource.desktop),
+            tablet: Math.floor(this.overviewInfo.trafficSource.tablet),
+            phone: Math.floor(this.overviewInfo.trafficSource.phone),
+          };
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe();
+
+    this.usersService
+      .fetchOrders(6)
+      .pipe(
+        map((orders: LatestOrder[]) => (this.dataSource.data = orders)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe();
+
+    this.usersService
+      .fetchSalesInfo()
+      .pipe(
+        map((sales: SalesInfo) => {
+          this.salesInfo = {
+            currentYear: sales.currentYear.map((current) => Math.floor(current)),
+            lastYear: sales.lastYear.map((last) => Math.floor(last)),
+          };
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe();
 
     this.latestProducts$ = this.usersService.fetchProducts(5);
 
@@ -97,6 +154,7 @@ export class Overview implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

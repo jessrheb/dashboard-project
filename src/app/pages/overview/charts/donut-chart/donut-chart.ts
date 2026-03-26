@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -10,8 +10,6 @@ import {
   ApexTooltip,
   ChartComponent,
 } from 'ng-apexcharts';
-
-import { Data } from '../../../../shared/data';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -31,21 +29,29 @@ export type ChartOptions = {
   templateUrl: './donut-chart.html',
   styleUrl: './donut-chart.css',
 })
-export class DonutChart {
-  @ViewChild('chart') chart!: ChartComponent;
+export class DonutChart implements OnChanges {
+  @ViewChild('chart') chart: ChartComponent | null = null;
   public chartOptions: ChartOptions;
 
-  constructor(private readonly data: Data) {
+  @Input() trafficSource: {
+    desktop: number;
+    tablet: number;
+    phone: number;
+  } = {
+    desktop: 0,
+    tablet: 0,
+    phone: 0,
+  };
+
+  constructor() {
     this.chartOptions = {
-      series: Object.values(this.data.trafficSource),
+      series: [],
       chart: {
         height: '289px',
         type: 'donut',
         width: '100%',
       },
-      labels: Object.keys(this.data.trafficSource).map((label) =>
-        label.replace(/^./, (char) => char.toUpperCase()),
-      ),
+      labels: [],
       legend: {
         show: false,
       },
@@ -56,17 +62,7 @@ export class DonutChart {
         fillSeriesColor: false,
       },
       fill: {
-        colors: [
-          function ({ value }: any) {
-            if (value < 20) {
-              return 'rgb(21, 183, 159)';
-            } else if (value >= 20 && value < 60) {
-              return 'rgb(251, 156, 12)';
-            } else {
-              return 'rgb(99, 91, 255)';
-            }
-          },
-        ],
+        colors: ['rgb(21, 183, 159)', 'rgb(251, 156, 12)', 'rgb(99, 91, 255)'],
       },
       stroke: {
         width: 0,
@@ -79,5 +75,12 @@ export class DonutChart {
         },
       },
     };
+  }
+
+  ngOnChanges(): void {
+    this.chartOptions.series = Object.values(this.trafficSource);
+    this.chartOptions.labels = Object.keys(this.trafficSource).map((label) =>
+      label.replace(/^./, (char) => char.toUpperCase()),
+    );
   }
 }
