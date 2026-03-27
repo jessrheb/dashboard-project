@@ -2,10 +2,10 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Observable, Subscription } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { CustomersInfo } from '../../shared/data';
-import { UsersService } from '../../shared/users';
-import { MatPaginator } from '@angular/material/paginator';
+import { CustomersService } from '../../services/customers';
 @Component({
   selector: 'app-customers',
   standalone: false,
@@ -65,8 +65,8 @@ export class Customers implements OnInit, OnDestroy, AfterViewInit {
     .map((column) => column.columnDef)
     .filter((header) => header !== 'id' && header !== 'avatar');
 
-  constructor(private readonly usersService: UsersService) {
-    this.customers$ = this.usersService.fetchCustomers();
+  constructor(private readonly customersService: CustomersService) {
+    this.customers$ = this.customersService.fetchCustomers();
   }
 
   isAllSelected() {

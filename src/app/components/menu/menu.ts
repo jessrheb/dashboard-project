@@ -3,7 +3,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { Observable } from 'rxjs';
 
 import { Data, UserInfo } from '../../shared/data';
-import { UsersService } from '../../shared/users';
+import { UsersService } from '../../services/users';
 
 @Component({
   selector: 'app-menu',

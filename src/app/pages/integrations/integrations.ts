@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { forkJoin, map, Observable, Subject, takeUntil } from 'rxjs';
 
 import { Application, Data } from '../../shared/data';
-import { UsersService } from '../../shared/users';
+import { IntegrationsService } from '../../services/integrations';
 
 @Component({
   selector: 'app-integrations',
@@ -24,15 +24,15 @@ export class Integrations implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private readonly data: Data,
-    private readonly usersService: UsersService,
+    private readonly integrationsService: IntegrationsService,
   ) {
     this.userId = this.data.id;
   }
 
   ngOnInit(): void {
     forkJoin([
-      this.usersService.fetchIntegrations(),
-      this.usersService.fetchIntegrationsByUser(this.userId),
+      this.integrationsService.fetchIntegrations(),
+      this.integrationsService.fetchIntegrationsByUser(this.userId),
     ])
       .pipe(
         map(([integrations, ids]) => {

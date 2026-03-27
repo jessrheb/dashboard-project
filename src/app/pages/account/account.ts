@@ -4,7 +4,7 @@ import { FloatLabelType, SubscriptSizing } from '@angular/material/form-field';
 import { Observable } from 'rxjs';
 
 import { UserInfo, Data } from '../../shared/data';
-import { UsersService } from '../../shared/users';
+import { UsersService } from '../../services/users';
 
 @Component({
   selector: 'app-account',

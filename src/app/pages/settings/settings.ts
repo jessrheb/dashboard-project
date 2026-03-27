@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Data, NotificationSetting } from '../../shared/data';
-import { UsersService } from '../../shared/users';
+import { UsersService } from '../../services/users';
 
 @Component({
   selector: 'app-settings',

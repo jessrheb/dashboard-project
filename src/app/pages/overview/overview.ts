@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { map, Observable, Subject, takeUntil } from 'rxjs';
 
 import { LatestOrder, LatestProduct, OverviewInfo, SalesInfo } from '../../shared/data';
-import { UsersService } from '../../shared/users';
+import { OverviewService } from '../../services/overview';
 
 @Component({
   selector: 'app-overview',
@@ -39,6 +39,9 @@ export class Overview implements OnInit, OnDestroy {
     lastYear: [],
   };
 
+  budgetPercent: number = 0;
+  totalCustomersPercent: number = 0;
+
   columns = [
     {
       columnDef: 'order',
@@ -66,7 +69,7 @@ export class Overview implements OnInit, OnDestroy {
   displayedColumns: Array<string> = [];
   headers: Array<string> = this.columns.map((column) => column.columnDef);
 
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly overviewService: OverviewService) {}
 
   get budget() {
     return this.overviewInfo.budget;
@@ -97,21 +100,15 @@ export class Overview implements OnInit, OnDestroy {
   }
 
   percentChange(a: number, b: number) {
-    let percent;
-    if (b !== 0) {
-      if (a !== 0) {
-        percent = ((b - a) / a) * 100;
-      } else {
-        percent = b * 100;
-      }
-    } else {
-      percent = -a * 100;
+    if (!a || !b) {
+      return 0;
     }
+    const percent = ((b - a) / a) * 100;
     return Math.floor(percent);
   }
 
   ngOnInit(): void {
-    this.usersService
+    this.overviewService
       .fetchOverviewInfo()
       .pipe(
         map((overview: OverviewInfo) => {
@@ -122,12 +119,20 @@ export class Overview implements OnInit, OnDestroy {
             tablet: Math.floor(this.overviewInfo.trafficSource.tablet),
             phone: Math.floor(this.overviewInfo.trafficSource.phone),
           };
+          this.budgetPercent = this.percentChange(
+            this.overviewInfo.budget.current,
+            this.overviewInfo.budget.lastMonth,
+          );
+          this.totalCustomersPercent = this.percentChange(
+            this.overviewInfo.totalCustomers.current,
+            this.overviewInfo.totalCustomers.lastMonth,
+          );
         }),
         takeUntil(this.destroy$),
       )
       .subscribe();
 
-    this.usersService
+    this.overviewService
       .fetchOrders(6)
       .pipe(
         map((orders: LatestOrder[]) => (this.dataSource.data = orders)),
@@ -135,7 +140,7 @@ export class Overview implements OnInit, OnDestroy {
       )
       .subscribe();
 
-    this.usersService
+    this.overviewService
       .fetchSalesInfo()
       .pipe(
         map((sales: SalesInfo) => {
@@ -148,7 +153,7 @@ export class Overview implements OnInit, OnDestroy {
       )
       .subscribe();
 
-    this.latestProducts$ = this.usersService.fetchProducts(5);
+    this.latestProducts$ = this.overviewService.fetchProducts(5);
 
     this.displayedColumns.push(...this.headers);
   }
