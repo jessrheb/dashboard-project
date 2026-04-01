@@ -1,4 +1,4 @@
-<app-page-heading [pageTitle]="'Account'"></app-page-heading>
+<app-page-heading [pageTitle]="'Account'" [complexHeading]="false"></app-page-heading>
 
 @if (loggedAccount$ | async; as loggedAccount) {
 <mat-card class="account info">

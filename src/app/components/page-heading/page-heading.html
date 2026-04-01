@@ -1,22 +1,21 @@
 <header class="complex-heading">
-    <h4 class="h4">{{ pageTitle}}</h4>
-    @if (!simpleHeading) {
-    <button matButton="filled" type="button">
-        <mat-icon svgIcon="ph-light:plus"></mat-icon>
+    <h4 class="page-heading">{{ pageTitle }}</h4>
+    @if (complexHeading) {
+    <section class="complex-buttons">
+        <button matButton type="button">
+            <mat-icon svgIcon="ph-light:upload" style="height: 20px; width: 20px; font-size: 0;"></mat-icon>
+            <span>Import</span>
+        </button>
+        <button matButton type="button">
+            <mat-icon svgIcon="ph-light:download" style="height: 20px; width: 20px; font-size: 0;"></mat-icon>
+            <span>Export</span>
+        </button>
+    </section>
+    }
+
+    <button *ngIf="complexHeading" matButton="filled" type="button">
+        <mat-icon svgIcon="ph-light:plus"
+            style="height: 20px; width: 20px; font-size: 0; padding-left: 4px;"></mat-icon>
         <span>Add</span>
     </button>
-    }
 </header>
-
-@if (!simpleHeading) {
-<section class="complex-buttons">
-    <button matButton type="button">
-        <mat-icon svgIcon="ph-light:upload"></mat-icon>
-        <span>Import</span>
-    </button>
-    <button matButton type="button">
-        <mat-icon svgIcon="ph-light:download"></mat-icon>
-        <span>Export</span>
-    </button>
-</section>
-}

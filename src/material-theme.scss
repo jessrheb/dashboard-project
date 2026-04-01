@@ -333,8 +333,8 @@ app-page-heading {
   min-width: 0;
   width: 100%;
 
-  & > h4.h4,
-  & > header.complex-heading > h4.h4 {
+  & > h4.page-heading,
+  & > header.complex-heading > h4.page-heading {
     color: #212636;
     display: block;
     font-size: 32px;

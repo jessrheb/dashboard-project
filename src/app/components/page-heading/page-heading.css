@@ -1,11 +1,14 @@
 header.complex-heading {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+  columns: 2;
 
-section.complex-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: var(--mat-standard-spacing);
+  & > section.complex-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: var(--mat-standard-spacing);
+    margin-top: var(--mat-standard-spacing);
+  }
+
+  & > button {
+    float: right;
+  }
 }

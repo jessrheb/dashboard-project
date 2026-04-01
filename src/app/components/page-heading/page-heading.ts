@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class PageHeading {
   @Input() pageTitle: string = '';
-  @Input() simpleHeading: boolean = true;
+  @Input() complexHeading: boolean = true;
 }

@@ -102,6 +102,7 @@ mat-card-content > div.legend {
   display: flex;
   gap: calc(2 * var(--mat-standard-spacing));
   justify-content: center;
+  margin-top: calc(2 * var(--mat-standard-spacing));
 
   & > mat-card-title-group.legend-item {
     text-align: center;
